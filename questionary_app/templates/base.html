@@ -41,6 +41,9 @@
                         <a class="nav-link" href="#">INQUIRY</a>  {% endcomment %}
                         <a class="btn btn-primary" href="{% url 'questionary_app:genre_create' %}">CREATE GENRE</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{% url 'questionary_app:question_create' %}">CREATE QUESTION</a>
+                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         {% comment %} <a class="nav-link {% block active_diary_list %}{% endblock %}"
