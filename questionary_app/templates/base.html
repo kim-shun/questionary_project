@@ -37,8 +37,9 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        {% comment %} <a class="nav-link {% block active_inquiry %}{% endblock %}" href="{% url 'questionary_app:inquiry' %}">INQUIRY</a> {% endcomment %}
-                        <a class="nav-link" href="#">INQUIRY</a> 
+                        {% comment %} <a class="nav-link {% block active_inquiry %}{% endblock %}" href="{% url 'questionary_app:inquiry' %}">INQUIRY</a>
+                        <a class="nav-link" href="#">INQUIRY</a>  {% endcomment %}
+                        <a class="btn btn-primary" href="{% url 'questionary_app:genre_create' %}">CREATE GENRE</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
