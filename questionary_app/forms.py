@@ -1,6 +1,5 @@
 from django import forms
-
-from .models import Genre, Question
+from .models import Genre
 
 
 class GenreCreateForm(forms.ModelForm):
@@ -15,24 +14,27 @@ class GenreCreateForm(forms.ModelForm):
 
 
 QUESTION_CHOICE = {
-    ('0', '選択タイプ'),
-    ('1', 'パーセンテージタイプ')
+    ('selectType', '選択タイプ'),
+    ('percentageType', 'パーセンテージタイプ')
 }
 
 
-class QuestionCreateForm(forms.ModelForm):
-    genre = forms.ModelChoiceField(label="質問のジャンル", queryset=Genre.objects.all())
+class QuestionCreateForm(forms.Form):
+    genre = forms.ModelChoiceField(
+        label="質問のジャンル",
+        queryset=Genre.objects.all(),
+        required=True
+    )
+
     question_type = forms.ChoiceField(
         label="質問の形式",
         choices=QUESTION_CHOICE,
         widget=forms.RadioSelect,
-        initial=0)
+        initial=0,
+        required=True
+    )
 
-    class Meta:
-        model = Question
-        fields = ('question_id', 'genre', 'question_order', 'question_type', 'content',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
+    content = forms.CharField(
+        label='質問内容',
+        required=True
+    )

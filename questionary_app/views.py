@@ -1,12 +1,8 @@
-# import logging
-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-# , UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic
-# from django.shortcuts import get_object_or_404
-
+from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm
 from .models import Genre, Question
 
@@ -33,21 +29,23 @@ class GenreCreateView(LoginRequiredMixin, generic.CreateView):
         return super().form_invalid(form)
 
 
-class QuestionCreateView(LoginRequiredMixin, generic.CreateView):
-    model = Question
-    template_name = 'question_create.html'
-    form_class = QuestionCreateForm
-    success_url = reverse_lazy('questionary_app:index')
+def create_question(request):
+    form = QuestionCreateForm(request.POST or None)
 
-    def form_valid(self, form):
-        question = form.save(commit=False)
-        question.user = self.request.user
-        # question.question_order = 99
-        # question.question_id = 99
-        question.save()
-        messages.success(self.request, '質問を作成しました。')
-        return super().form_valid(form)
+    if form.is_valid():
+        question = Question()
+        question.genre = form.cleaned_data['genre']
+        question.question_type = form.cleaned_data['question_type']
+        question.content = form.cleaned_data['content']
+        question.user = request.user
 
-    def form_invalid(self, form):
-        messages.error(self.request, "質問の作成に失敗しました。")
-        return super().form_invalid(form)
+        Question.objects.create(
+            question_id=100,
+            genre=question.genre,
+            question_order=99,
+            question_type=question.question_type,
+            content=question.content,
+            user=question.user
+        )
+        return redirect('questionary_app:index')
+    return render(request, 'question_create.html', {'form': form})
