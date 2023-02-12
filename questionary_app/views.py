@@ -5,6 +5,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm
 from .models import Genre, Question
+from django.db.models import Max
 
 
 class IndexView(generic.TemplateView):
@@ -39,10 +40,16 @@ def create_question(request):
         question.content = form.cleaned_data['content']
         question.user = request.user
 
+        question_id = 1
+        question_order = 1
+        if Question.objects.filter(genre=question.genre).exists():
+            question_id = Question.objects.all().aggregate(Max('question_id'))["question_id__max"] + 1
+            question_order = Question.objects.filter(genre=question.genre).aggregate(Max('question_order'))["question_order__max"] + 1
+
         Question.objects.create(
-            question_id=100,
+            question_id=question_id,
             genre=question.genre,
-            question_order=99,
+            question_order=question_order,
             question_type=question.question_type,
             content=question.content,
             user=question.user

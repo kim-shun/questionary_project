@@ -21,10 +21,10 @@ class Genre(models.Model):
 class Question(models.Model):
     """質問テーブルモデル"""
 
-    question_id = models.PositiveIntegerField(verbose_name='質問ID', null=False)
+    question_id = models.PositiveIntegerField(verbose_name='質問ID', null=False, default=1)
     genre = models.ForeignKey(Genre, verbose_name="質問ジャンル",
                               related_name='question_genre_id', on_delete=models.PROTECT, null=False)
-    question_order = models.PositiveIntegerField(verbose_name="質問順序", null=False)
+    question_order = models.PositiveIntegerField(verbose_name="質問順序", null=False, default=1)
     question_type = models.CharField(verbose_name='質問形式', max_length=20, null=False)
     content = models.TextField(verbose_name='質問内容', null=False)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
