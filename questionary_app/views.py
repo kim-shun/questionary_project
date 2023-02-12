@@ -40,9 +40,11 @@ class QuestionCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy('questionary_app:index')
 
     def form_valid(self, form):
-        genre = form.save(commit=False)
-        genre.user = self.request.user
-        genre.save()
+        question = form.save(commit=False)
+        question.user = self.request.user
+        # question.question_order = 99
+        # question.question_id = 99
+        question.save()
         messages.success(self.request, '質問を作成しました。')
         return super().form_valid(form)
 

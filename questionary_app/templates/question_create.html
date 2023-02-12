@@ -11,7 +11,33 @@
         <form method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
             <table class="table">
-                {{ form.as_table }}
+                {% comment %} {{ form.as_table }} {% endcomment %}
+                <tbody>
+                    {% comment %} <tr>
+                        <th width="150">{{ form.question_id.label_tag }}</th>
+                        <td>{{ form.question_id }}</td>
+                    </tr> {% endcomment %}
+                    <tr>
+                        <th width="150">{{ form.genre.label_tag }}</th>
+                        <td>{{ form.genre }}</td>
+                    </tr> 
+                    {% comment %} <tr>
+                        <th width="150" height="50">{{ form.question_order.label_tag }}</th>
+                        <td>{{ form.question_order}}</td>
+                    </tr> {% endcomment %}
+                    <tr>
+                        <th width="150" height="50">{{ form.question_type.label_tag }}</th>
+                        <td>
+                            {% for radiobutton in form.question_type %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.content.label_tag }}</th>
+                        <td>{{ form.content }}</td>
+                    </tr> 
+                </tbody>
             </table>
             <button class="btn btn-primary" type="submit">作成</button>
         </form>
