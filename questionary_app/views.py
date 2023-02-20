@@ -49,15 +49,14 @@ def create_question(request):
         for i in range(1, 6):
             question_detail.genre = form.cleaned_data['genre']
             question_order = i
+            question_detail.user = request.user
             content = 'content' + str(i)
             answer_type = 'answer_type' + str(i)
-            print(content)
-            print(answer_type)
             question_detail.content = form.cleaned_data[content]
             question_detail.answer_type = form.cleaned_data[answer_type]
-            question_detail.user = request.user
-            create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
-                                   question_detail.content, question_detail.user)
+            if (len(question_detail.content) != 0) or (len(question_detail.answer_type) != 0):
+                create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
+                                       question_detail.content, question_detail.user)
 
         return redirect('questionary_app:index')
     return render(request, 'question_create.html', {'form': form})
