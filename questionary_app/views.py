@@ -7,8 +7,13 @@ from .forms import GenreCreateForm, QuestionCreateForm
 from .models import MGenre, Question, QuestionDetail
 
 
-class IndexView(generic.TemplateView):
+class IndexView(LoginRequiredMixin, generic.ListView):
+    model = Question
     template_name = "index.html"
+
+    def get_queryset(self):
+        questions = Question.objects.filter(user=self.request.user).order_by('-created_at')
+        return questions
 
 
 class GenreCreateView(LoginRequiredMixin, generic.CreateView):
@@ -32,6 +37,7 @@ class GenreCreateView(LoginRequiredMixin, generic.CreateView):
 def create_question(request):
     form = QuestionCreateForm(request.POST or None)
 
+# TODO タイトルのユニークのバリデーション
     if form.is_valid():
         question = Question()
         question.title = form.cleaned_data['title']
@@ -43,9 +49,8 @@ def create_question(request):
         )
 
         question_id = Question.objects.get(title=question.title)
-
         question_detail = QuestionDetail()
-        
+
         for i in range(1, 6):
             question_detail.genre = form.cleaned_data['genre']
             question_order = i
