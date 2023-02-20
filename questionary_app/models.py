@@ -23,6 +23,9 @@ class Question(models.Model):
     """質問テーブルモデル"""
 
     title = models.CharField(verbose_name='タイトル', max_length=60, null=False, unique=True)
+    answer_num = models.PositiveIntegerField(verbose_name="回答人数", null=False, default=0)
+    median_score = models.PositiveIntegerField(verbose_name="中央値", null=False, default=0)
+    average_score = models.PositiveIntegerField(verbose_name="平均値", null=False, default=0)
     delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
