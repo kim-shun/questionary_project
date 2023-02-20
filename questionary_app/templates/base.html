@@ -37,10 +37,10 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="{% url 'questionary_app:genre_create' %}">CREATE GENRE</a>
+                        <a class="nav-link {% block active_genre_create %}{% endblock %}" href="{% url 'questionary_app:genre_create' %}">CREATE GENRE</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary" href="{% url 'questionary_app:question_create' %}">CREATE QUESTION</a>
+                        <a class="nav-link {% block active_question_create %}{% endblock %}" href="{% url 'questionary_app:question_create' %}">CREATE QUESTION</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">

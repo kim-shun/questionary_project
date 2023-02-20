@@ -4,7 +4,9 @@
 {% block title %}質問作成 | Unique Questionary{% endblock %}
 
 {% block active_question_list %}active{% endblock %}
-
+{% block head %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
 {% block contents %}
 <div class="container my-div-style">
     <div class="row">
@@ -13,20 +15,72 @@
             <table class="table">
                 <tbody>
                     <tr>
+                        <th width="150">{{ form.title.label_tag }}</th>
+                        <td>{{ form.title }}</td>
+                    </tr>
+                    <tr>
                         <th width="150">{{ form.genre.label_tag }}</th>
                         <td>{{ form.genre }}</td>
                     </tr>
                     <tr>
-                        <th width="150" height="50">{{ form.question_type.label_tag }}</th>
+                        <th width="150">{{ form.content1.label_tag }}</th>
+                        <td>{{ form.content1 }}</td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.answer_type1.label_tag }}</th>
                         <td>
-                            {% for radiobutton in form.question_type %}
+                            {% for radiobutton in form.answer_type1 %}
                                 {{ radiobutton }}
                             {% endfor %}
                         </td>
                     </tr>
                     <tr>
-                        <th width="150">{{ form.content.label_tag }}</th>
-                        <td>{{ form.content }}</td>
+                        <th width="150">{{ form.content2.label_tag }}</th>
+                        <td>{{ form.content2 }}</td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.answer_type2.label_tag }}</th>
+                        <td>
+                            {% for radiobutton in form.answer_type2 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.content3.label_tag }}</th>
+                        <td>{{ form.content3 }}</td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.answer_type3.label_tag }}</th>
+                        <td>
+                            {% for radiobutton in form.answer_type3 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.content4.label_tag }}</th>
+                        <td>{{ form.content4 }}</td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.answer_type4.label_tag }}</th>
+                        <td>
+                            {% for radiobutton in form.answer_type4 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.content5.label_tag }}</th>
+                        <td>{{ form.content5 }}</td>
+                    </tr>
+                    <tr>
+                        <th width="150">{{ form.answer_type5.label_tag }}</th>
+                        <td>
+                            {% for radiobutton in form.answer_type5 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        </td>
                     </tr>
                 </tbody>
             </table>
