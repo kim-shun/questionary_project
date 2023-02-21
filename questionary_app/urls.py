@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name="index"),
     path('genre-create/', views.GenreCreateView.as_view(), name="genre_create"),
     path('question-create/', views.create_question, name="question_create"),
+    path('question-answer/<int:pk>/', views.QuestionAnswerView.as_view(), name="question_answer"),
 ]

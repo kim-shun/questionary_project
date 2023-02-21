@@ -78,3 +78,8 @@ def create_question_detail(question_id, genre, question_order, answer_type,
         content=content,
         user=user
     )
+
+
+class QuestionAnswerView(LoginRequiredMixin, generic.DetailView):
+    model = Question
+    template_name = 'question_answer.html'

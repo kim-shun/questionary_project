@@ -31,7 +31,6 @@
           {% for question in question_list %}
           <div class="post-preview">
               <a href="#">
-              {% comment %} <a href="{% url 'question:question_detail' question.pk %}"> {% endcomment %}
                   <h2 class="post-title">
                       {{ question.title }}
                   </h2>
@@ -41,6 +40,9 @@
               <p class="post-meta">総合評価平均値：{{ question.average_score }}点</p>
               <p class="post-meta">作成者：{{ question.user }}</p>
               <p class="post-meta">作成日時：{{ question.created_at }}</p>
+              <div class="d-flex justify-content-end mb-4">
+                <a class="btn btn-primary float-right" href="{% url 'questionary_app:question_answer' question.pk %}">回答する</a>
+            </div>
           </div>
           <hr class="my-4">
           {% empty %}
