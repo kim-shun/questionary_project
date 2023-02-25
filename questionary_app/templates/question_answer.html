@@ -26,6 +26,22 @@
         </div>
         <div class="col-9">
             {{ question.content }}
+            {% if question.answer_type == 'scoreType' %}
+              <div>scoreType</div>
+              {% comment %} {% for radiobutton in form.select_type %}
+                  {{ radiobutton }}
+              {% endfor %} {% endcomment %}
+            {% elif question.answer_type == 'selectType' %}
+              <div>selectType</div>
+              {% comment %} {% for radiobutton in form.select_type %}
+                  {{ radiobutton }}
+              {% endfor %} {% endcomment %}
+            {% elif question.answer_type == 'customSelectType' %}
+              <div>customSelectType</div>
+              {% comment %} {% for radiobutton in form.select_type %}
+                  {{ radiobutton }}
+              {% endfor %} {% endcomment %}
+            {% endif %}
         </div>
         {% endfor %}
     </div>

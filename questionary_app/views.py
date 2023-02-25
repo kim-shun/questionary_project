@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm
+# , AnswerCreateForm
 from .models import MGenre, Question, QuestionDetail
 
 
@@ -82,4 +83,5 @@ def create_question_detail(question_id, genre, question_order, answer_type,
 
 class QuestionAnswerView(LoginRequiredMixin, generic.DetailView):
     model = Question
+    # form_class = AnswerCreateForm
     template_name = 'question_answer.html'
