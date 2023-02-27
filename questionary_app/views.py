@@ -80,12 +80,6 @@ def create_question_detail(question_id, genre, question_order, answer_type,
     )
 
 
-class QuestionAnswerView(LoginRequiredMixin, generic.DetailView):
-    model = Question
-    # form_class = AnswerCreateForm
-    template_name = 'question_answer.html'
-
-
 def create_answer(request, question_id):
     form = AnswerCreateForm(request.POST or None)
     question = Question.objects.get(id=question_id)
