@@ -20,30 +20,36 @@
     <hr>
 
     <div class="row">
-        {% for question in object.question_detail.all %}
-        <div class="col-3">
-            <strong>質問</strong>
-        </div>
-        <div class="col-9">
-            {{ question.content }}
-            {% if question.answer_type == 'scoreType' %}
-              <div>scoreType</div>
-              {% comment %} {% for radiobutton in form.select_type %}
-                  {{ radiobutton }}
-              {% endfor %} {% endcomment %}
-            {% elif question.answer_type == 'selectType' %}
-              <div>selectType</div>
-              {% comment %} {% for radiobutton in form.select_type %}
-                  {{ radiobutton }}
-              {% endfor %} {% endcomment %}
-            {% elif question.answer_type == 'customSelectType' %}
-              <div>customSelectType</div>
-              {% comment %} {% for radiobutton in form.select_type %}
-                  {{ radiobutton }}
-              {% endfor %} {% endcomment %}
-            {% endif %}
-        </div>
-        {% endfor %}
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {% for question in object.question_detail.all %}
+            <div class="col-3">
+                <strong>質問</strong>
+            </div>
+            <div class="col-9">
+                {{ question.content }}
+                {% if question.answer_type == 'scoreType' %}
+                <div>scoreType</div>
+                {% comment %} {% for radiobutton in form.select_type %}
+                    {{ radiobutton }}
+                {% endfor %} {% endcomment %}
+                {% elif question.answer_type == 'selectType' %}
+                <div>selectType</div>
+                {% comment %} {% for radiobutton in form.select_type %}
+                    {{ radiobutton }}
+                {% endfor %} {% endcomment %}
+                {% elif question.answer_type == 'customSelectType' %}
+                <div>customSelectType</div>
+                {% comment %} {% for radiobutton in form.select_type %}
+                    {{ radiobutton }}
+                {% endfor %} {% endcomment %}
+                {% endif %}
+                {{ form.score }}
+                {{ form.comment }}
+            </div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">作成</button>
+        </form>
     </div>
     <hr>
 </div>

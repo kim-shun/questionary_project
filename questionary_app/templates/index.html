@@ -42,6 +42,7 @@
               <p class="post-meta">作成日時：{{ question.created_at }}</p>
               <div class="d-flex justify-content-end mb-4">
                 <a class="btn btn-primary float-right" href="{% url 'questionary_app:question_answer' question.pk %}">回答する</a>
+                <a class="btn btn-primary float-right" href="{% url 'questionary_app:answer_create' question.pk %}">回答する2</a>
             </div>
           </div>
           <hr class="my-4">

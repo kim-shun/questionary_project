@@ -72,14 +72,14 @@ ANSWER_CHOICE = {
 }
 
 
-# class AnswerCreateForm(forms.Form):
-#     score = forms.IntegerField(label='総合評価', min_length=0, max_length=100, required=False)
-#     comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=True)
-#     select_type = forms.ChoiceField(
-#         label="選択",
-#         choices=ANSWER_CHOICE,
-#         widget=forms.RadioSelect,
-#         initial=0,
-#         help_text="あてはまる場合は+、あてはまらない場合は-",
-#         required=False
-#     )
+class AnswerCreateForm(forms.Form):
+    score = forms.IntegerField(label='総合評価', required=False)
+    comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=True)
+    select_type = forms.ChoiceField(
+        label="選択",
+        choices=ANSWER_CHOICE,
+        widget=forms.RadioSelect,
+        initial=0,
+        help_text="あてはまる場合は+、あてはまらない場合は-",
+        required=False
+    )

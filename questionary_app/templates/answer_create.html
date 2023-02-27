@@ -1,0 +1,21 @@
+<h1>テスト</h1>
+<div class="container my-div-style">
+  <div class="row">
+      <form method="POST" enctype='multipart/form-data'>
+          {% csrf_token %}
+          <table class="table">
+              <tbody>
+                  <tr>
+                      <th width="150">{{ form.score.label_tag }}</th>
+                      <td>{{ form.score }}</td>
+                  </tr>
+                  <tr>
+                      <th width="150">{{ form.comment.label_tag }}</th>
+                      <td>{{ form.comment }}</td>
+                  </tr>
+              </tbody>
+          </table>
+          <button class="btn btn-primary" type="submit">作成</button>
+      </form>
+  </div>
+</div>

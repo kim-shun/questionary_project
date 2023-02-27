@@ -3,8 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
-from .forms import GenreCreateForm, QuestionCreateForm
-# , AnswerCreateForm
+from .forms import GenreCreateForm, QuestionCreateForm, AnswerCreateForm
 from .models import MGenre, Question, QuestionDetail
 
 
@@ -85,3 +84,15 @@ class QuestionAnswerView(LoginRequiredMixin, generic.DetailView):
     model = Question
     # form_class = AnswerCreateForm
     template_name = 'question_answer.html'
+
+
+def create_answer(request, question_id):
+    form = AnswerCreateForm(request.POST or None)
+    question = Question.objects.get(id=question_id)
+    params = {
+        'form': form,
+        'question': question
+    }
+    if form.is_valid():
+        return redirect('questionary_app:index')
+    return render(request, 'answer_create.html', params)
