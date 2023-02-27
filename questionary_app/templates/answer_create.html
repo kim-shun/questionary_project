@@ -1,4 +1,10 @@
-<h1>テスト</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}日記詳細 | Unique Questionary{% endblock %}
+
+{% block active_question_list %}active{% endblock %}
+{% comment %} <h1>テスト</h1>
 <div class="container my-div-style">
   <div class="row">
       <form method="POST" enctype='multipart/form-data'>
@@ -18,4 +24,60 @@
           <button class="btn btn-primary" type="submit">作成</button>
       </form>
   </div>
+</div> {% endcomment %}
+
+
+
+{% block contents %}
+<div class="container my-div-style">
+    <div class="row">
+        <div class="col-3">
+            <strong>タイトル</strong>
+        </div>
+        <div class="col-9">
+            {{ question.title }}
+        </div>
+    </div>
+
+    <hr>
+
+    
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {% for question in question.question_detail.all %}
+            <div class="row">
+                <div class="col-3">
+                    <strong>質問</strong>
+                </div>
+                <div class="col-9">
+                    {{ question.content }}
+                </div>
+                <div class="col-3">
+                    <strong>選択</strong>
+                </div>
+                <div class="col-9">
+                    {% if question.answer_type == 'scoreType' %}
+                    {% for radiobutton in form.select_type %}
+                        {{ radiobutton }}
+                    {% endfor %}
+                    {% elif question.answer_type == 'selectType' %}
+                    {% for radiobutton in form.select_type %}
+                        {{ radiobutton }}
+                    {% endfor %}
+                    {% elif question.answer_type == 'customSelectType' %}
+                    {% for radiobutton in form.select_type %}
+                        {{ radiobutton }}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-3">{{ form.score.label_tag }}</div>
+            <div class="col-9">{{ form.score }}</div>
+            <div class="col-3">{{ form.comment.label_tag }}</div>
+            <div class="col-9">{{ form.comment }}</div>
+            {% endfor %}
+            <button class="btn btn-primary" type="submit">作成</button>
+        </form>
+    <hr>
 </div>
+{% endblock %}

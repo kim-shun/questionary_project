@@ -66,9 +66,9 @@ class QuestionCreateForm(forms.Form):
 
 
 ANSWER_CHOICE = {
-    ('correct', '+'),
-    ('neutral', '◯'),
-    ('incorrect', '-')
+    ('correct', 'あてはまる'),
+    ('neutral', 'どちらとも言えない'),
+    ('incorrect', 'あてはまらない')
 }
 
 
