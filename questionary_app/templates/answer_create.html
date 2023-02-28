@@ -52,9 +52,7 @@
                 <div class="col-9">
                     {{ question.content }}
                 </div>
-                <div class="col-3">
-                    <strong>選択</strong>
-                </div>
+                <div class="col-3"></div>
                 <div class="col-9">
                     {% if question.answer_type == 'scoreType' %}
                     {% for radiobutton in form.select_type %}
@@ -71,11 +69,21 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-3">{{ form.score.label_tag }}</div>
-            <div class="col-9">{{ form.score }}</div>
-            <div class="col-3">{{ form.comment.label_tag }}</div>
-            <div class="col-9">{{ form.comment }}</div>
             {% endfor %}
+            <hr>
+            <div class="row">
+                <div class="col-3">
+                    <strong>{{ form.score.label_tag }}</strong>
+                </div>
+                <div class="col-9">{{ form.score }}</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-3">
+                    <strong>{{ form.comment.label_tag }}</strong>
+                </div>
+                <div class="col-9">{{ form.comment }}</div>
+            </div>
             <button class="btn btn-primary" type="submit">作成</button>
         </form>
     <hr>
