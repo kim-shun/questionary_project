@@ -55,15 +55,61 @@
                 <div class="col-3"></div>
                 <div class="col-9">
                     {% if question.answer_type == 'scoreType' %}
-                        {{ form.score }}点
+                        {% if forloop.counter == 1 %}
+                          {{ form.score1 }}点
+                        {% elif forloop.counter == 2 %}
+                          {{ form.score2 }}点
+                        {% elif forloop.counter == 3 %}
+                          {{ form.score3 }}点
+                        {% elif forloop.counter == 4 %}
+                          {{ form.score4 }}点
+                        {% elif forloop.counter == 5 %}
+                          {{ form.score5 }}点
+                        {% endif %}
                     {% elif question.answer_type == 'selectType' %}
-                        {% for radiobutton in form.select_type %}
-                            {{ radiobutton }}
-                        {% endfor %}
+                        {% if forloop.counter == 1 %}
+                            {% for radiobutton in form.select_type1 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 2 %}
+                            {% for radiobutton in form.select_type2 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 3 %}
+                            {% for radiobutton in form.select_type3 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 4 %}
+                            {% for radiobutton in form.select_type4 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 5 %}
+                            {% for radiobutton in form.select_type5 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% endif %}
                     {% elif question.answer_type == 'customSelectType' %}
-                        {% for radiobutton in form.select_type %}
-                            {{ radiobutton }}
-                        {% endfor %}
+                        {% if forloop.counter == 1 %}
+                            {% for radiobutton in form.select_type1 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 2 %}
+                            {% for radiobutton in form.select_type2 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 3 %}
+                            {% for radiobutton in form.select_type3 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 4 %}
+                            {% for radiobutton in form.select_type4 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% elif forloop.counter == 5 %}
+                            {% for radiobutton in form.select_type5 %}
+                                {{ radiobutton }}
+                            {% endfor %}
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
@@ -73,7 +119,7 @@
                 <div class="col-3">
                     <strong>{{ form.score.label_tag }}</strong>
                 </div>
-                <div class="col-9">{{ form.score }}点</div>
+                <div class="col-9">{{ form.allScore }}点</div>
             </div>
             <hr>
             <div class="row">
