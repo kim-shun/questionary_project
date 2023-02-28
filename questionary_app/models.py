@@ -24,8 +24,9 @@ class Question(models.Model):
 
     title = models.CharField(verbose_name='タイトル', max_length=60, null=False, unique=True)
     answer_num = models.PositiveIntegerField(verbose_name="回答人数", null=False, default=0)
-    median_score = models.PositiveIntegerField(verbose_name="中央値", null=False, default=0)
-    average_score = models.PositiveIntegerField(verbose_name="平均値", null=False, default=0)
+    answer_count = models.PositiveIntegerField(verbose_name="回答件数", null=False, default=0)
+    median_score = models.PositiveIntegerField(verbose_name="総合点中央値", null=False, default=0)
+    average_score = models.PositiveIntegerField(verbose_name="総合点平均値", null=False, default=0)
     delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
@@ -62,6 +63,41 @@ class QuestionDetail(models.Model):
 
     def __str__(self):
         return self.question
+
+
+class Answer(models.Model):
+    """回答テーブルモデル"""
+
+    question = models.ForeignKey(Question, verbose_name='質問ID',
+                                 related_name='question_answer', on_delete=models.PROTECT, null=False)
+    all_score = models.PositiveIntegerField(verbose_name="総合点", null=False, default=0)
+    comment = models.TextField(verbose_name='自由コメンt', null=True)
+    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name_plural = 'Answer'
+        db_table = 'answer'
+
+
+class AnswerDetail(models.Model):
+    """回答詳細テーブルモデル"""
+
+    question_detail = models.ForeignKey(QuestionDetail, verbose_name='質問詳細ID',
+                                        related_name='question_answer_detail', on_delete=models.PROTECT, null=False)
+    answer = models.ForeignKey(Answer, verbose_name='回答ID',
+                               related_name='answer_detail', on_delete=models.PROTECT, null=False)
+    content = models.CharField(verbose_name='回答内容', max_length=200, null=False)
+    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+    user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name_plural = 'AnswerDetail'
+        db_table = 'answer_detail'
 
 
 class MChoice(models.Model):

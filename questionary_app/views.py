@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm, AnswerCreateForm
-from .models import MGenre, Question, QuestionDetail
+from .models import MGenre, Question, QuestionDetail, Answer
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -88,5 +88,17 @@ def create_answer(request, question_id):
         'question': question
     }
     if form.is_valid():
+        answer = Answer()
+        answer.all_score = form.cleaned_data['all_score']
+        answer.comment = form.cleaned_data['comment']
+        answer.user = request.user
+
+        Answer.objects.create(
+            question=question_id,
+            all_score=answer.all_score,
+            comment=answer.comment,
+            user=question.user
+        )
+        # TODO Detailと平均点等の集計
         return redirect('questionary_app:index')
     return render(request, 'answer_create.html', params)
