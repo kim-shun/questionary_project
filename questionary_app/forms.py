@@ -73,7 +73,9 @@ ANSWER_CHOICE = {
 
 
 class AnswerCreateForm(forms.Form):
-    score = forms.IntegerField(label='総合評価', required=False)
+    score = forms.IntegerField(label='総合評価', initial="80",
+                               widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
+                               required=False)
     comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=True)
     select_type = forms.ChoiceField(
         label="選択",
