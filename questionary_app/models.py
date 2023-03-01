@@ -84,9 +84,10 @@ class Answer(models.Model):
 
 class AnswerDetail(models.Model):
     """回答詳細テーブルモデル"""
-
+    question = models.ForeignKey(Question, verbose_name='質問ID',
+                                 related_name='question_answer_detail', on_delete=models.PROTECT, null=False)
     question_detail = models.ForeignKey(QuestionDetail, verbose_name='質問詳細ID',
-                                        related_name='question_answer_detail', on_delete=models.PROTECT, null=False)
+                                        related_name='question_detail_answer_detail', on_delete=models.PROTECT, null=False)
     answer = models.ForeignKey(Answer, verbose_name='回答ID',
                                related_name='answer_detail', on_delete=models.PROTECT, null=False)
     content = models.CharField(verbose_name='回答内容', max_length=200, null=False)

@@ -4,29 +4,6 @@
 {% block title %}日記詳細 | Unique Questionary{% endblock %}
 
 {% block active_question_list %}active{% endblock %}
-{% comment %} <h1>テスト</h1>
-<div class="container my-div-style">
-  <div class="row">
-      <form method="POST" enctype='multipart/form-data'>
-          {% csrf_token %}
-          <table class="table">
-              <tbody>
-                  <tr>
-                      <th width="150">{{ form.score.label_tag }}</th>
-                      <td>{{ form.score }}</td>
-                  </tr>
-                  <tr>
-                      <th width="150">{{ form.comment.label_tag }}</th>
-                      <td>{{ form.comment }}</td>
-                  </tr>
-              </tbody>
-          </table>
-          <button class="btn btn-primary" type="submit">作成</button>
-      </form>
-  </div>
-</div> {% endcomment %}
-
-
 
 {% block contents %}
 <div class="container my-div-style">
@@ -44,17 +21,18 @@
     
         <form method="POST" enctype='multipart/form-data'>
             {% csrf_token %}
-            {% for question in question.question_detail.all %}
+            {% for question_detail in question.question_detail.all %}
             <div class="row">
                 <div class="col-3">
                     <strong>質問</strong>
                 </div>
                 <div class="col-9">
-                    {{ question.content }}
+                    {{ question_detail.content }}
                 </div>
+                <input type="hidden" id="question_detail_id" name="question_detail_id{{forloop.counter}}" value={{ question_detail.id }} />
                 <div class="col-3"></div>
                 <div class="col-9">
-                    {% if question.answer_type == 'scoreType' %}
+                    {% if question_detail.answer_type == 'scoreType' %}
                         {% if forloop.counter == 1 %}
                           {{ form.score1 }}点
                         {% elif forloop.counter == 2 %}
@@ -66,7 +44,7 @@
                         {% elif forloop.counter == 5 %}
                           {{ form.score5 }}点
                         {% endif %}
-                    {% elif question.answer_type == 'selectType' %}
+                    {% elif question_detail.answer_type == 'selectType' %}
                         {% if forloop.counter == 1 %}
                             {% for radiobutton in form.select_type1 %}
                                 {{ radiobutton }}
@@ -88,7 +66,7 @@
                                 {{ radiobutton }}
                             {% endfor %}
                         {% endif %}
-                    {% elif question.answer_type == 'customSelectType' %}
+                    {% elif question_detail.answer_type == 'customSelectType' %}
                         {% if forloop.counter == 1 %}
                             {% for radiobutton in form.select_type1 %}
                                 {{ radiobutton }}
