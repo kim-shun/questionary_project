@@ -101,15 +101,16 @@ def create_answer(request, question_id):
  
         answer_detail = AnswerDetail()
         answer_detail.user = request.user
+        count = QuestionDetail.objects.filter(question_id=question).count()
 
-        for i in range(1, 6):
-            question_detail_id = 'question_detail_id' + str(i)
+        for i in range(1, count + 1):
             score = 'score' + str(i)
             select_type = 'select_type' + str(i)
-            question_detail = request.POST[question_detail_id]
-            answer_detail.question_detail = QuestionDetail.objects.get(id=question_detail)
             score_content = form.cleaned_data[score]
             select_type_content = form.cleaned_data[select_type]
+            question_detail_id = 'question_detail_id' + str(i)
+            question_detail = request.POST[question_detail_id]
+            answer_detail.question_detail = QuestionDetail.objects.get(id=question_detail)
             if (score_content is None or score_content == "") and (len(select_type_content) != 0):
                 answer_detail.content = select_type_content
             elif (score_content is not None and score_content != "") and (len(select_type_content) == 0):
