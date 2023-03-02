@@ -96,14 +96,22 @@ def create_answer(request, question_id):
             question=question,
             all_score=answer.all_score,
             comment=answer.comment,
-            user=question.user
+            user=answer.user
         )
- 
+
+        answer_num = Answer.objects.filter(question_id=question).distinct("user").count()
+        answer_count = Answer.objects.filter(question_id=question).count()
+
+        # TODO auth(全ユーザーが見られるようにする)のと平均値、中央値
+        question.answer_num = answer_num
+        question.answer_count = answer_count
+        question.save()
+
         answer_detail = AnswerDetail()
         answer_detail.user = request.user
-        count = QuestionDetail.objects.filter(question_id=question).count()
+        question_detail_count = QuestionDetail.objects.filter(question_id=question).count()
 
-        for i in range(1, count + 1):
+        for i in range(1, question_detail_count + 1):
             score = 'score' + str(i)
             select_type = 'select_type' + str(i)
             score_content = form.cleaned_data[score]
