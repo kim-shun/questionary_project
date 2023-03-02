@@ -14,7 +14,7 @@ class MGenre(models.Model):
     class Meta:
         verbose_name_plural = 'MGenre'
         db_table = 'genre'
-    
+
     def __str__(self):
         return self.genre_name
 

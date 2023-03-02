@@ -43,12 +43,11 @@ def create_question(request):
         question.title = form.cleaned_data['title']
         question.user = request.user
 
-        Question.objects.create(
+        question_id = Question.objects.create(
             title=question.title,
             user=question.user
         )
 
-        question_id = Question.objects.get(title=question.title)
         question_detail = QuestionDetail()
         question_detail.genre = form.cleaned_data['genre']
         question_detail.user = request.user
@@ -93,14 +92,13 @@ def create_answer(request, question_id):
         answer.comment = form.cleaned_data['comment']
         answer.user = request.user
 
-        Answer.objects.create(
-            question=question_id,
+        answer_id = Answer.objects.create(
+            question=question,
             all_score=answer.all_score,
             comment=answer.comment,
             user=question.user
         )
-        # TODO 別の正確な方法でanswer_idを取得
-        answer_id = Answer.objects.get(question=question_id)
+ 
         answer_detail = AnswerDetail()
         answer_detail.user = request.user
 
@@ -108,25 +106,26 @@ def create_answer(request, question_id):
             question_detail_id = 'question_detail_id' + str(i)
             score = 'score' + str(i)
             select_type = 'select_type' + str(i)
-            answer_detail.question_detail = request.POST[question_detail_id]
+            question_detail = request.POST[question_detail_id]
+            answer_detail.question_detail = QuestionDetail.objects.get(id=question_detail)
             score_content = form.cleaned_data[score]
             select_type_content = form.cleaned_data[select_type]
-            if (len(score_content) == 0) or (len(select_type_content) != 0):
+            if (score_content is None or score_content == "") and (len(select_type_content) != 0):
                 answer_detail.content = select_type_content
-            elif (len(score_content) != 0) or (len(select_type_content) == 0):
+            elif (score_content is not None and score_content != "") and (len(select_type_content) == 0):
                 answer_detail.content = score_content
 
-            if (len(answer_detail.content) != 0):
-                create_answer_detail(question_id, answer_detail.question_detail, answer_id,
+            if (answer_detail.content is not None and answer_detail.content != ""):
+                create_answer_detail(question, answer_detail.question_detail, answer_id,
                                      answer_detail.content, answer_detail.user)
         return redirect('questionary_app:index')
     return render(request, 'answer_create.html', params)
 
 
-def create_answer_detail(question_id, question_detail_id, answer_id, content, user):
+def create_answer_detail(question, question_detail_id, answer_id, content, user):
 
     AnswerDetail.objects.create(
-        question=question_id,
+        question=question,
         question_detail=question_detail_id,
         answer=answer_id,
         content=content,

@@ -77,48 +77,48 @@ class AnswerCreateForm(forms.Form):
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
         initial=0,
-        required=True
+        required=False
     )
     select_type2 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
         initial=0,
-        required=True
+        required=False
     )
     select_type3 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
         initial=0,
-        required=True
+        required=False
     )
     select_type4 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
         initial=0,
-        required=True
+        required=False
     )
     select_type5 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
         initial=0,
-        required=True
+        required=False
     )
     score1 = forms.IntegerField(label='点数', initial="80",
                                 widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                required=True)
+                                required=False)
     score2 = forms.IntegerField(label='点数', initial="80",
                                 widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                required=True)
+                                required=False)
     score3 = forms.IntegerField(label='点数', initial="80",
                                 widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                required=True)
+                                required=False)
     score4 = forms.IntegerField(label='点数', initial="80",
                                 widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                required=True)
+                                required=False)
     score5 = forms.IntegerField(label='点数', initial="80",
                                 widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                required=True)
-    allScore = forms.IntegerField(label='総合点', initial="80",
-                                  widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                  required=False)
-    comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=True)
+                                required=False)
+    all_score = forms.IntegerField(label='総合点', initial="80",
+                                   widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
+                                   required=True)
+    comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=False)
