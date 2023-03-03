@@ -64,6 +64,32 @@ class QuestionCreateForm(forms.Form):
         required=False
     )
 
+    choice_item1_1 = forms.CharField(label='選択肢1', required=False)
+    choice_item1_2 = forms.CharField(label='選択肢2', required=False)
+    choice_item1_3 = forms.CharField(label='選択肢3', required=False)
+    choice_item1_4 = forms.CharField(label='選択肢4', required=False)
+    choice_item1_5 = forms.CharField(label='選択肢5', required=False)
+    choice_item2_1 = forms.CharField(label='選択肢1', required=False)
+    choice_item2_2 = forms.CharField(label='選択肢2', required=False)
+    choice_item2_3 = forms.CharField(label='選択肢3', required=False)
+    choice_item2_4 = forms.CharField(label='選択肢4', required=False)
+    choice_item2_5 = forms.CharField(label='選択肢5', required=False)
+    choice_item3_1 = forms.CharField(label='選択肢1', required=False)
+    choice_item3_2 = forms.CharField(label='選択肢2', required=False)
+    choice_item3_3 = forms.CharField(label='選択肢3', required=False)
+    choice_item3_4 = forms.CharField(label='選択肢4', required=False)
+    choice_item3_5 = forms.CharField(label='選択肢5', required=False)
+    choice_item4_1 = forms.CharField(label='選択肢1', required=False)
+    choice_item4_2 = forms.CharField(label='選択肢2', required=False)
+    choice_item4_3 = forms.CharField(label='選択肢3', required=False)
+    choice_item4_4 = forms.CharField(label='選択肢4', required=False)
+    choice_item4_5 = forms.CharField(label='選択肢5', required=False)
+    choice_item5_1 = forms.CharField(label='選択肢1', required=False)
+    choice_item5_2 = forms.CharField(label='選択肢2', required=False)
+    choice_item5_3 = forms.CharField(label='選択肢3', required=False)
+    choice_item5_4 = forms.CharField(label='選択肢4', required=False)
+    choice_item5_5 = forms.CharField(label='選択肢5', required=False)
+
 
 ANSWER_CHOICE = {
     ('correct', 'あてはまる'),
