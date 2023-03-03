@@ -12,7 +12,7 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = "index.html"
 
     def get_queryset(self):
-        questions = Question.objects.filter(user=self.request.user).order_by('-created_at')
+        questions = Question.objects.all().order_by('-created_at')
         return questions
 
 
