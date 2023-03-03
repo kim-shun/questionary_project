@@ -5,6 +5,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm, AnswerCreateForm
 from .models import MGenre, Question, QuestionDetail, Answer, AnswerDetail
+from django.db.models import Avg
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -101,10 +102,20 @@ def create_answer(request, question_id):
 
         answer_num = Answer.objects.filter(question_id=question).distinct("user").count()
         answer_count = Answer.objects.filter(question_id=question).count()
+        average_score = Answer.objects.filter(question_id=question).aggregate(Avg('all_score'))["all_score__avg"]
+        score_list = Answer.objects.filter(question_id=question).order_by("all_score").values_list("all_score", flat=True)
+        median_score = 0
+        if answer_count % 2 == 0:
+            point = answer_count / 2
+            median_score = score_list[point]
+        elif answer_count % 2 != 0:
+            point = round(answer_count / 2)
+            median_score = score_list[point]
 
-        # TODO auth(全ユーザーが見られるようにする)のと平均値、中央値
         question.answer_num = answer_num
         question.answer_count = answer_count
+        question.average_score = average_score
+        question.median_score = median_score
         question.save()
 
         answer_detail = AnswerDetail()
