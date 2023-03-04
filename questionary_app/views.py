@@ -151,17 +151,27 @@ def create_answer(request, question_id):
         question_detail_count = QuestionDetail.objects.filter(question_id=question).count()
 
         for i in range(1, question_detail_count + 1):
-            score = 'score' + str(i)
-            select_type = 'select_type' + str(i)
-            score_content = form.cleaned_data[score]
-            select_type_content = form.cleaned_data[select_type]
             question_detail_id = 'question_detail_id' + str(i)
             question_detail = request.POST[question_detail_id]
+
+            score = 'score' + str(i)
+            score_content = form.cleaned_data[score]
+
+            select_type = 'select_type' + str(i)
+            select_type_content = form.cleaned_data[select_type]
+
             answer_detail.question_detail = QuestionDetail.objects.get(id=question_detail)
             if (score_content is None or score_content == "") and (len(select_type_content) != 0):
+                # 質問への回答形式が正否判定だった場合
                 answer_detail.content = select_type_content
             elif (score_content is not None and score_content != "") and (len(select_type_content) == 0):
+                # 質問への回答形式が点数形式だった場合
                 answer_detail.content = score_content
+            else:
+                # 質問への回答形式がユーザー作成の選択肢だった場合
+                choice_item = 'choice_item' + str(question_detail)
+                choice_item_content = request.POST[choice_item]
+                answer_detail.content = choice_item_content
 
             if (answer_detail.content is not None and answer_detail.content != ""):
                 create_answer_detail(question, answer_detail.question_detail, answer_id,
