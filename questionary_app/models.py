@@ -108,7 +108,7 @@ class MChoice(models.Model):
                                  related_name='question_choice', on_delete=models.PROTECT)
     question_detail = models.ForeignKey(QuestionDetail, verbose_name="質問詳細ID", 
                                         related_name='detail_choice', on_delete=models.PROTECT, null=False)
-    choice_item = models.CharField(verbose_name='選択項目', max_length=60, null=False)
+    choice_item = models.CharField(verbose_name='選択項目', max_length=200, null=False)
     delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)

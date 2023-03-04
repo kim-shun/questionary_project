@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm, AnswerCreateForm
-from .models import MGenre, Question, QuestionDetail, Answer, AnswerDetail
+from .models import MGenre, Question, QuestionDetail, Answer, AnswerDetail, MChoice
 from django.db.models import Avg
 
 
@@ -53,6 +53,9 @@ def create_question(request):
         question_detail.genre = form.cleaned_data['genre']
         question_detail.user = request.user
 
+        m_choice = MChoice()
+        m_choice.user = request.user
+
         for i in range(1, 6):
             question_order = i
             content = 'content' + str(i)
@@ -60,22 +63,47 @@ def create_question(request):
             question_detail.content = form.cleaned_data[content]
             question_detail.answer_type = form.cleaned_data[answer_type]
             if (len(question_detail.content) != 0) or (len(question_detail.answer_type) != 0):
-                create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
-                                       question_detail.content, question_detail.user)
+                question_detail_id = create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
+                                                            question_detail.content, question_detail.user)
+
+            if question_detail.answer_type == 'customSelectType':
+                for j in range(1, 6):
+                    choice_item = 'choice_item' + str(i) + '_' + str(j)
+                    m_choice.choice_item = form.cleaned_data[choice_item]
+                    if (len(m_choice.choice_item) != 0):
+                        create_m_choice(question_id, question_detail_id, m_choice.choice_item, m_choice.user)
 
         return redirect('questionary_app:index')
+    # form.fields['content1']
+    # form.fields['answer_type1']
+    # form.fields['choice_item1_1']
+    # form.fields['choice_item1_2']
+    # form.fields['choice_item1_3']
+    # form.fields['choice_item1_4']
+    # form.fields['choice_item1_5']
     return render(request, 'question_create.html', {'form': form})
 
 
 def create_question_detail(question_id, genre, question_order, answer_type,
                            content, user):
 
-    QuestionDetail.objects.create(
+    question_detail_id = QuestionDetail.objects.create(
         question=question_id,
         genre=genre,
         question_order=question_order,
         answer_type=answer_type,
         content=content,
+        user=user
+    )
+    return question_detail_id
+
+
+def create_m_choice(question_id, question_detail_id, choice_item, user):
+
+    MChoice.objects.create(
+        question=question_id,
+        question_detail=question_detail_id,
+        choice_item=choice_item,
         user=user
     )
 
