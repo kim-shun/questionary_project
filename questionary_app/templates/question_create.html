@@ -5,12 +5,80 @@
 
 {% block active_question_list %}active{% endblock %}
 {% block head %}
-<script src="{% static 'js/script.js' %}"></script>
+<script>
+    function radioCheck(){
+        var question2CheckFlag = false;
+        var question3CheckFlag = false;
+        var question4CheckFlag = false;
+        var question5CheckFlag = false;
+
+        if (document.question_create_form.content2.value) {
+            for(var i=0; i<document.question_create_form.answer_type2.length;i++){
+                // i番目のラジオボタンがチェックされているかを判定
+                if(document.question_create_form.answer_type2[i].checked){ 
+                    question2CheckFlag = true;
+                }
+            }
+        } else if (!document.question_create_form.content2.value) {
+            question2CheckFlag = true;
+        }
+
+        if (document.question_create_form.content3.value) {
+            for(var i=0; i<document.question_create_form.answer_type3.length;i++){
+                // i番目のラジオボタンがチェックされているかを判定
+                if(document.question_create_form.answer_type3[i].checked){ 
+                    question3CheckFlag = true;
+                }
+            }
+        } else if (!document.question_create_form.content3.value) {
+            question3CheckFlag = true;
+        }
+
+        if (document.question_create_form.content4.value) {
+            for(var i=0; i<document.question_create_form.answer_type4.length;i++){
+                // i番目のラジオボタンがチェックされているかを判定
+                if(document.question_create_form.answer_type4[i].checked){ 
+                    question4CheckFlag = true;
+                }
+            }
+        } else if (!document.question_create_form.content4.value) {
+            question4CheckFlag = true;
+        }
+
+        if (document.question_create_form.content5.value) {
+            for(var i=0; i<document.question_create_form.answer_type5.length;i++){
+                // i番目のラジオボタンがチェックされているかを判定
+                if(document.question_create_form.answer_type5[i].checked){ 
+                    question5CheckFlag = true;
+                }
+            }
+        } else if (!document.question_create_form.content5.value) {
+            question5CheckFlag = true;
+        }
+      
+        // 何も選択されていない場合の処理
+        if(!question2CheckFlag){ 
+            alert("回答の形式2が選択されていません。");
+        }
+        // 何も選択されていない場合の処理
+        if(!question3CheckFlag){ 
+            alert("回答の形式3が選択されていません。");
+        }
+        // 何も選択されていない場合の処理
+        if(!question4CheckFlag){ 
+            alert("回答の形式4が選択されていません。");
+        }
+        // 何も選択されていない場合の処理
+        if(!question5CheckFlag){ 
+            alert("回答の形式5が選択されていません。");
+        }
+      }
+</script>
 {% endblock %}
 {% block contents %}
 <div class="container my-div-style">
     <div class="row">
-        <form method="POST" enctype='multipart/form-data'>
+        <form method="POST" enctype='multipart/form-data' name="question_create_form">
             {% csrf_token %}
             <table class="table">
                 <tbody>
@@ -186,7 +254,7 @@
 
                 </tbody>
             </table>
-            <button class="btn btn-primary" type="submit">作成</button>
+            <button class="btn btn-primary" type="submit"  onclick="radioCheck();">作成</button>
         </form>
     </div>
 </div>
