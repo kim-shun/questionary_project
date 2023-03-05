@@ -6,6 +6,47 @@
 {% block active_question_list %}active{% endblock %}
 {% block head %}
 <script>
+    function choiceListDisplay1() {
+        radio = document.getElementsByName('answer_type1')
+        if (radio[2].checked) {
+            document.getElementById('choice-item-list1').style.display = "";
+        } else {
+            document.getElementById('choice-item-list1').style.display = "none";
+        }
+    }
+    function choiceListDisplay2() {
+        radio = document.getElementsByName('answer_type2')
+        if (radio[2].checked) {
+            document.getElementById('choice-item-list2').style.display = "";
+        } else {
+            document.getElementById('choice-item-list2').style.display = "none";
+        }
+    }
+    function choiceListDisplay3() {
+        radio = document.getElementsByName('answer_type3')
+        if (radio[2].checked) {
+            document.getElementById('choice-item-list3').style.display = "";
+        } else {
+            document.getElementById('choice-item-list3').style.display = "none";
+        }
+    }
+    function choiceListDisplay4() {
+        radio = document.getElementsByName('answer_type4')
+        if (radio[2].checked) {
+            document.getElementById('choice-item-list4').style.display = "";
+        } else {
+            document.getElementById('choice-item-list4').style.display = "none";
+        }
+    }
+    function choiceListDisplay5() {
+        radio = document.getElementsByName('answer_type5')
+        if (radio[2].checked) {
+            document.getElementById('choice-item-list5').style.display = "";
+        } else {
+            document.getElementById('choice-item-list5').style.display = "none";
+        }
+    }
+    window.addEventListener('load', choiceListDisplay1());
     function radioCheck(){
         var question2CheckFlag = false;
         var question3CheckFlag = false;
@@ -14,7 +55,6 @@
 
         if (document.question_create_form.content2.value) {
             for(var i=0; i<document.question_create_form.answer_type2.length;i++){
-                // i番目のラジオボタンがチェックされているかを判定
                 if(document.question_create_form.answer_type2[i].checked){ 
                     question2CheckFlag = true;
                 }
@@ -25,7 +65,6 @@
 
         if (document.question_create_form.content3.value) {
             for(var i=0; i<document.question_create_form.answer_type3.length;i++){
-                // i番目のラジオボタンがチェックされているかを判定
                 if(document.question_create_form.answer_type3[i].checked){ 
                     question3CheckFlag = true;
                 }
@@ -36,7 +75,6 @@
 
         if (document.question_create_form.content4.value) {
             for(var i=0; i<document.question_create_form.answer_type4.length;i++){
-                // i番目のラジオボタンがチェックされているかを判定
                 if(document.question_create_form.answer_type4[i].checked){ 
                     question4CheckFlag = true;
                 }
@@ -47,7 +85,6 @@
 
         if (document.question_create_form.content5.value) {
             for(var i=0; i<document.question_create_form.answer_type5.length;i++){
-                // i番目のラジオボタンがチェックされているかを判定
                 if(document.question_create_form.answer_type5[i].checked){ 
                     question5CheckFlag = true;
                 }
@@ -80,180 +117,270 @@
     <div class="row">
         <form method="POST" enctype='multipart/form-data' name="question_create_form">
             {% csrf_token %}
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th width="150">{{ form.title.label_tag }}</th>
-                        <td>{{ form.title }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.genre.label_tag }}</th>
-                        <td>{{ form.genre }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.content1.label_tag }}</th>
-                        <td>{{ form.content1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.answer_type1.label_tag }}</th>
-                        <td>
-                            {% for radiobutton in form.answer_type1 %}
-                                {{ radiobutton }}
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item1_1.label_tag }}</th>
-                        <td>{{ form.choice_item1_1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item1_2.label_tag }}</th>
-                        <td>{{ form.choice_item1_2}}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item1_3.label_tag }}</th>
-                        <td>{{ form.choice_item1_3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item1_4.label_tag }}</th>
-                        <td>{{ form.choice_item1_4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item1_5.label_tag }}</th>
-                        <td>{{ form.choice_item1_5 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.content2.label_tag }}</th>
-                        <td>{{ form.content2 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.answer_type2.label_tag }}</th>
-                        <td>
-                            {% for radiobutton in form.answer_type2 %}
-                                {{ radiobutton }}
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item2_1.label_tag }}</th>
-                        <td>{{ form.choice_item2_1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item2_2.label_tag }}</th>
-                        <td>{{ form.choice_item2_2}}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item2_3.label_tag }}</th>
-                        <td>{{ form.choice_item2_3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item2_4.label_tag }}</th>
-                        <td>{{ form.choice_item2_4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item2_5.label_tag }}</th>
-                        <td>{{ form.choice_item2_5 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.content3.label_tag }}</th>
-                        <td>{{ form.content3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.answer_type3.label_tag }}</th>
-                        <td>
-                            {% for radiobutton in form.answer_type3 %}
-                                {{ radiobutton }}
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item3_1.label_tag }}</th>
-                        <td>{{ form.choice_item3_1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item3_2.label_tag }}</th>
-                        <td>{{ form.choice_item3_2}}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item3_3.label_tag }}</th>
-                        <td>{{ form.choice_item3_3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item3_4.label_tag }}</th>
-                        <td>{{ form.choice_item3_4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item3_5.label_tag }}</th>
-                        <td>{{ form.choice_item3_5 }}</td>
-                    </tr>
-
-                    <tr>
-                        <th width="150">{{ form.content4.label_tag }}</th>
-                        <td>{{ form.content4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.answer_type4.label_tag }}</th>
-                        <td>
-                            {% for radiobutton in form.answer_type4 %}
-                                {{ radiobutton }}
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item4_1.label_tag }}</th>
-                        <td>{{ form.choice_item4_1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item4_2.label_tag }}</th>
-                        <td>{{ form.choice_item4_2}}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item4_3.label_tag }}</th>
-                        <td>{{ form.choice_item4_3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item4_4.label_tag }}</th>
-                        <td>{{ form.choice_item4_4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item4_5.label_tag }}</th>
-                        <td>{{ form.choice_item4_5 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.content5.label_tag }}</th>
-                        <td>{{ form.content5 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.answer_type5.label_tag }}</th>
-                        <td>
-                            {% for radiobutton in form.answer_type5 %}
-                                {{ radiobutton }}
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item5_1.label_tag }}</th>
-                        <td>{{ form.choice_item5_1 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item5_2.label_tag }}</th>
-                        <td>{{ form.choice_item5_2}}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item5_3.label_tag }}</th>
-                        <td>{{ form.choice_item5_3 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item5_4.label_tag }}</th>
-                        <td>{{ form.choice_item5_4 }}</td>
-                    </tr>
-                    <tr>
-                        <th width="150">{{ form.choice_item5_5.label_tag }}</th>
-                        <td>{{ form.choice_item5_5 }}</td>
-                    </tr>
-
-                </tbody>
-            </table>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.title.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.title }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>{{ form.genre.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.genre }}</div>
+                    <hr>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.content1.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.content1 }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>回答の形式1</strong>
+                    </div>
+                    <div class="col-9">
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type1" value="scoreType" onclick="choiceListDisplay1()" checked>
+                            <label class="answer-type-label"> 点数形式(例:95点)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type1" value="selectType" onclick="choiceListDisplay1()">
+                            <label class="answer-type-label"> 選択形式(あてはまる/どちらとも言えない/あてはまらない)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type1" value="customSelectType" onclick="choiceListDisplay1()">
+                            <label class="answer-type-label"> カスタム選択形式</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <dev id="choice-item-list1" style="display:none;">
+                        <div>
+                            <strong>{{ form.choice_item1_1.label_tag }}</strong>
+                            {{ form.choice_item1_1 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item1_2.label_tag }}</strong>
+                            {{ form.choice_item1_2 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item1_3.label_tag }}</strong>
+                            {{ form.choice_item1_3 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item1_4.label_tag }}</strong>
+                            {{ form.choice_item1_4 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item1_5.label_tag }}</strong>
+                            {{ form.choice_item1_5 }}
+                        </div>
+                    </dev>
+                    <hr>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.content2.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.content2 }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>回答の形式2</strong>
+                    </div>
+                    <div class="col-9">
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type2" value="scoreType" onclick="choiceListDisplay2()" checked>
+                            <label class="answer-type-label"> 点数形式(例:95点)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type2" value="selectType" onclick="choiceListDisplay2()">
+                            <label class="answer-type-label"> 選択形式(あてはまる/どちらとも言えない/あてはまらない)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type2" value="customSelectType" onclick="choiceListDisplay2()">
+                            <label class="answer-type-label"> カスタム選択形式</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <dev id="choice-item-list2" style="display:none;">
+                        <div>
+                            <strong>{{ form.choice_item2_1.label_tag }}</strong>
+                            {{ form.choice_item2_1 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item2_2.label_tag }}</strong>
+                            {{ form.choice_item2_2 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item2_3.label_tag }}</strong>
+                            {{ form.choice_item2_3 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item2_4.label_tag }}</strong>
+                            {{ form.choice_item2_4 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item2_5.label_tag }}</strong>
+                            {{ form.choice_item2_5 }}
+                        </div>
+                    </dev>
+                    <hr>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.content3.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.content3 }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>回答の形式3</strong>
+                    </div>
+                    <div class="col-9">
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type3" value="scoreType" onclick="choiceListDisplay3()" checked>
+                            <label class="answer-type-label"> 点数形式(例:95点)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type3" value="selectType" onclick="choiceListDisplay3()">
+                            <label class="answer-type-label"> 選択形式(あてはまる/どちらとも言えない/あてはまらない)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type3" value="customSelectType" onclick="choiceListDisplay3()">
+                            <label class="answer-type-label"> カスタム選択形式</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <dev id="choice-item-list3" style="display:none;">
+                        <div>
+                            <strong>{{ form.choice_item3_1.label_tag }}</strong>
+                            {{ form.choice_item3_1 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item3_2.label_tag }}</strong>
+                            {{ form.choice_item3_2 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item3_3.label_tag }}</strong>
+                            {{ form.choice_item3_3 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item3_4.label_tag }}</strong>
+                            {{ form.choice_item3_4 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item3_5.label_tag }}</strong>
+                            {{ form.choice_item3_5 }}
+                        </div>
+                    </dev>
+                    <hr>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.content4.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.content4 }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>回答の形式4</strong>
+                    </div>
+                    <div class="col-9">
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type4" value="scoreType" onclick="choiceListDisplay4()" checked>
+                            <label class="answer-type-label"> 点数形式(例:95点)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type4" value="selectType" onclick="choiceListDisplay4()">
+                            <label class="answer-type-label"> 選択形式(あてはまる/どちらとも言えない/あてはまらない)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type4" value="customSelectType" onclick="choiceListDisplay4()">
+                            <label class="answer-type-label"> カスタム選択形式</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <dev id="choice-item-list4" style="display:none;">
+                        <div>
+                            <strong>{{ form.choice_item4_1.label_tag }}</strong>
+                            {{ form.choice_item4_1 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item4_2.label_tag }}</strong>
+                            {{ form.choice_item4_2 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item4_3.label_tag }}</strong>
+                            {{ form.choice_item4_3 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item4_4.label_tag }}</strong>
+                            {{ form.choice_item4_4 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item4_5.label_tag }}</strong>
+                            {{ form.choice_item4_5 }}
+                        </div>
+                    </dev>
+                    <hr>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>{{ form.content5.label_tag }}</strong>
+                    </div>
+                    <div class="col-9">{{ form.content5 }}</div>
+                    <hr>
+                    <div class="col-3">
+                        <strong>回答の形式5</strong>
+                    </div>
+                    <div class="col-9">
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type5" value="scoreType" onclick="choiceListDisplay5()" checked>
+                            <label class="answer-type-label"> 点数形式(例:95点)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type5" value="selectType" onclick="choiceListDisplay5()">
+                            <label class="answer-type-label"> 選択形式(あてはまる/どちらとも言えない/あてはまらない)</label>
+                        </div>
+                        <div class="answer-type">
+                            <input class="answer-type-input" type="radio" name="answer_type5" value="customSelectType" onclick="choiceListDisplay5()">
+                            <label class="answer-type-label"> カスタム選択形式</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <dev id="choice-item-list5" style="display:none;">
+                        <div>
+                            <strong>{{ form.choice_item5_1.label_tag }}</strong>
+                            {{ form.choice_item5_1 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item5_2.label_tag }}</strong>
+                            {{ form.choice_item5_2 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item5_3.label_tag }}</strong>
+                            {{ form.choice_item5_3 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item5_4.label_tag }}</strong>
+                            {{ form.choice_item5_4 }}
+                        </div>
+                        <div>
+                            <strong>{{ form.choice_item5_5.label_tag }}</strong>
+                            {{ form.choice_item5_5 }}
+                        </div>
+                    </dev>
+                    <hr>
+                </div>
+            </div>
             <button class="btn btn-primary" type="submit"  onclick="radioCheck();">作成</button>
         </form>
     </div>

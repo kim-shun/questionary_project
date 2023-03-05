@@ -61,7 +61,7 @@ def create_question(request):
             content = 'content' + str(i)
             answer_type = 'answer_type' + str(i)
             question_detail.content = form.cleaned_data[content]
-            question_detail.answer_type = form.cleaned_data[answer_type]
+            question_detail.answer_type = request.POST[answer_type]
             if (len(question_detail.content) != 0) or (len(question_detail.answer_type) != 0):
                 question_detail_id = create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
                                                             question_detail.content, question_detail.user)
@@ -74,13 +74,6 @@ def create_question(request):
                         create_m_choice(question_id, question_detail_id, m_choice.choice_item, m_choice.user)
 
         return redirect('questionary_app:index')
-    # form.fields['content1']
-    # form.fields['answer_type1']
-    # form.fields['choice_item1_1']
-    # form.fields['choice_item1_2']
-    # form.fields['choice_item1_3']
-    # form.fields['choice_item1_4']
-    # form.fields['choice_item1_5']
     return render(request, 'question_create.html', {'form': form})
 
 

@@ -13,13 +13,6 @@ class GenreCreateForm(forms.ModelForm):
             field.widget.attrs['class'] = 'form-control'
 
 
-QUESTION_CHOICE = {
-    ('scoreType', '点数形式(例：95点)'),
-    ('selectType', '選択形式(あてはまる/どちらとも言えない/あてはまらない)'),
-    ('customSelectType', 'カスタム選択形式')
-}
-
-
 class QuestionCreateForm(forms.Form):
     title = forms.CharField(label='質問のタイトル', required=True)
     genre = forms.ModelChoiceField(label="質問のジャンル", queryset=MGenre.objects.all(), required=True)
@@ -28,54 +21,16 @@ class QuestionCreateForm(forms.Form):
     content3 = forms.CharField(label='質問内容3', required=False)
     content4 = forms.CharField(label='質問内容4', required=False)
     content5 = forms.CharField(label='質問内容5', required=False)
-    answer_type1 = forms.ChoiceField(
-        label="回答の形式1",
-        choices=QUESTION_CHOICE,
-        widget=forms.RadioSelect,
-        initial=0,
-        required=True
-    )
-    answer_type2 = forms.ChoiceField(
-        label="回答の形式2",
-        choices=QUESTION_CHOICE,
-        widget=forms.RadioSelect,
-        initial=0,
-        required=False
-    )
-    answer_type3 = forms.ChoiceField(
-        label="回答の形式3",
-        choices=QUESTION_CHOICE,
-        widget=forms.RadioSelect,
-        initial=0,
-        required=False
-    )
-    answer_type4 = forms.ChoiceField(
-        label="回答の形式4",
-        choices=QUESTION_CHOICE,
-        widget=forms.RadioSelect,
-        initial=0,
-        required=False
-    )
-    answer_type5 = forms.ChoiceField(
-        label="回答の形式5",
-        choices=QUESTION_CHOICE,
-        widget=forms.RadioSelect,
-        initial=0,
-        required=False
-    )
-
     choice_item1_1 = forms.CharField(label='選択肢1', required=False)
     choice_item1_2 = forms.CharField(label='選択肢2', required=False)
     choice_item1_3 = forms.CharField(label='選択肢3', required=False)
     choice_item1_4 = forms.CharField(label='選択肢4', required=False)
     choice_item1_5 = forms.CharField(label='選択肢5', required=False)
-    # choice_item1_list = [choice_item1_1, choice_item1_2, choice_item1_3, choice_item1_4, choice_item1_5]
     choice_item2_1 = forms.CharField(label='選択肢1', required=False)
     choice_item2_2 = forms.CharField(label='選択肢2', required=False)
     choice_item2_3 = forms.CharField(label='選択肢3', required=False)
     choice_item2_4 = forms.CharField(label='選択肢4', required=False)
     choice_item2_5 = forms.CharField(label='選択肢5', required=False)
-    # choice_item2_list = (choice_item2_1, choice_item2_2, choice_item2_3, choice_item2_4, choice_item2_5)
     choice_item3_1 = forms.CharField(label='選択肢1', required=False)
     choice_item3_2 = forms.CharField(label='選択肢2', required=False)
     choice_item3_3 = forms.CharField(label='選択肢3', required=False)
