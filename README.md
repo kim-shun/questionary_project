@@ -32,6 +32,7 @@
 - placeholder
 - ログとコメントの埋め込み
 - 質問作成時の言語化フォロー機能
+- ラジオボタンの初期値設定
 
 
 
@@ -39,13 +40,36 @@
 # テーブル設計
 
 ## ER図
-添付予定
+[![Image from Gyazo](https://i.gyazo.com/d3e4834f13400ebe18bc777d7923a644.png)](https://gyazo.com/d3e4834f13400ebe18bc777d7923a644)
 
 ## customUser テーブル
+| Column                 | Type       | Options                        |
+| ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
+| password               | string     | null: false                    |
+| last_login             | date       |                                |
+| is_superuser           | boolean    | null: false                    |
+| username               | string     | null: false                    |
+| first_name             | string     | null: false                    |
+| last_name              | string     | null: false                    |
+| email                  | string     | null: false                    |
+| is_staff               | boolean    | null: false                    |
+| is_active              | boolean    | null: false                    |
+| date_joined            | date       | null: false                    |
+
+
+### Association
+- has_many   :m_genre
+- has_many   :question
+- has_many   :question_detail
+- has_many   :m_choice
+- has_many   :answer
+- has_many   :answer_detail
 
 ## m_genre テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | genre_name             | string     | null: false, unique: true      |
 | delete_flag            | integer    | null: false                    |
 | created_at             | date       |                                |
@@ -61,6 +85,7 @@
 
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | title                  | string     | null: false, unique: true      |
 | genre                  | references | foreign_key: true, null: false |
 | answer_num             | integer    | null: false                    |
@@ -84,6 +109,7 @@
 ## question_detail テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | question               | references | foreign_key: true, null: false |
 | question_order         | integer    | null: false                    |
 | answer_type            | string     | null: false                    |
@@ -103,6 +129,7 @@
 ## m_choice テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | question               | references | foreign_key: true, null: false |
 | question_detail        | references | foreign_key: true, null: false |
 | choice_item            | string     | null: false                    |
@@ -122,6 +149,7 @@
 ## answer テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | question               | references | foreign_key: true, null: false |
 | all_score              | integer    | null: false                    |
 | comment                | text       | null: true                     |
@@ -139,6 +167,7 @@
 ## answer_detail テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
+| id                     | integer    | null: false, primary_key: true |
 | question               | references | foreign_key: true, null: false |
 | question_detail        | references | foreign_key: true, null: false |
 | answer                 | references | foreign_key: true, null: false |
