@@ -23,6 +23,8 @@ class Question(models.Model):
     """質問テーブルモデル"""
 
     title = models.CharField(verbose_name='タイトル', max_length=60, null=False, unique=True)
+    genre = models.ForeignKey(MGenre, verbose_name="質問ジャンル",
+                              related_name='question_genre', on_delete=models.PROTECT, null=False)
     answer_num = models.PositiveIntegerField(verbose_name="回答人数", null=False, default=0)
     answer_count = models.PositiveIntegerField(verbose_name="回答件数", null=False, default=0)
     median_score = models.PositiveIntegerField(verbose_name="総合点中央値", null=False, default=0)
@@ -42,8 +44,6 @@ class QuestionDetail(models.Model):
 
     question = models.ForeignKey(Question, verbose_name='質問ID',
                                  related_name='question_detail', on_delete=models.PROTECT, null=False)
-    genre = models.ForeignKey(MGenre, verbose_name="質問ジャンル",
-                              related_name='question_genre', on_delete=models.PROTECT, null=False)
     question_order = models.PositiveIntegerField(verbose_name="質問順序", null=False, default=1)
     answer_type = models.CharField(verbose_name='回答形式', max_length=20, null=False)
     content = models.TextField(verbose_name='質問内容', null=False)
@@ -57,7 +57,7 @@ class QuestionDetail(models.Model):
         db_table = 'question_detail'
 
         constraints = [
-            models.UniqueConstraint(fields=['question', 'genre', 'question_order'],
+            models.UniqueConstraint(fields=['question', 'question_order'],
                                     name='unique_question_detail'),
         ]
 

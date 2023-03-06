@@ -42,15 +42,16 @@ def create_question(request):
     if form.is_valid():
         question = Question()
         question.title = form.cleaned_data['title']
+        question.genre = form.cleaned_data['genre']
         question.user = request.user
 
         question_id = Question.objects.create(
             title=question.title,
+            genre=question.genre,
             user=question.user
         )
 
         question_detail = QuestionDetail()
-        question_detail.genre = form.cleaned_data['genre']
         question_detail.user = request.user
 
         m_choice = MChoice()
@@ -62,8 +63,8 @@ def create_question(request):
             answer_type = 'answer_type' + str(i)
             question_detail.content = form.cleaned_data[content]
             question_detail.answer_type = request.POST[answer_type]
-            if (len(question_detail.content) != 0) or (len(question_detail.answer_type) != 0):
-                question_detail_id = create_question_detail(question_id, question_detail.genre, question_order, question_detail.answer_type,
+            if (len(question_detail.content) != 0) and (len(question_detail.answer_type) != 0):
+                question_detail_id = create_question_detail(question_id, question_order, question_detail.answer_type,
                                                             question_detail.content, question_detail.user)
 
             if question_detail.answer_type == 'customSelectType':
@@ -77,12 +78,11 @@ def create_question(request):
     return render(request, 'question_create.html', {'form': form})
 
 
-def create_question_detail(question_id, genre, question_order, answer_type,
+def create_question_detail(question_id, question_order, answer_type,
                            content, user):
 
     question_detail_id = QuestionDetail.objects.create(
         question=question_id,
-        genre=genre,
         question_order=question_order,
         answer_type=answer_type,
         content=content,
