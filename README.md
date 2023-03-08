@@ -42,7 +42,7 @@
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/d3e4834f13400ebe18bc777d7923a644.png)](https://gyazo.com/d3e4834f13400ebe18bc777d7923a644)
 
-## customUser テーブル
+## customuser テーブル
 | Column                 | Type       | Options                        |
 | ------                 | ------     | -----------                    |
 | id                     | integer    | null: false, primary_key: true |

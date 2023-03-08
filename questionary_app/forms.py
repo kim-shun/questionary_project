@@ -14,44 +14,48 @@ class GenreCreateForm(forms.ModelForm):
 
 
 class QuestionCreateForm(forms.Form):
-    title = forms.CharField(label='質問のタイトル', required=True)
+    title = forms.CharField(label='質問のタイトル', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1', 'placeholder': '例：東京都の住みやすさ'}), required=True)
     genre = forms.ModelChoiceField(label="質問のジャンル", queryset=MGenre.objects.all(), required=True)
-    content1 = forms.CharField(label='質問内容1', required=True)
-    content2 = forms.CharField(label='質問内容2', required=False)
-    content3 = forms.CharField(label='質問内容3', required=False)
-    content4 = forms.CharField(label='質問内容4', required=False)
-    content5 = forms.CharField(label='質問内容5', required=False)
-    choice_item1_1 = forms.CharField(label='選択肢1', required=False)
-    choice_item1_2 = forms.CharField(label='選択肢2', required=False)
-    choice_item1_3 = forms.CharField(label='選択肢3', required=False)
-    choice_item1_4 = forms.CharField(label='選択肢4', required=False)
-    choice_item1_5 = forms.CharField(label='選択肢5', required=False)
-    choice_item2_1 = forms.CharField(label='選択肢1', required=False)
-    choice_item2_2 = forms.CharField(label='選択肢2', required=False)
-    choice_item2_3 = forms.CharField(label='選択肢3', required=False)
-    choice_item2_4 = forms.CharField(label='選択肢4', required=False)
-    choice_item2_5 = forms.CharField(label='選択肢5', required=False)
-    choice_item3_1 = forms.CharField(label='選択肢1', required=False)
-    choice_item3_2 = forms.CharField(label='選択肢2', required=False)
-    choice_item3_3 = forms.CharField(label='選択肢3', required=False)
-    choice_item3_4 = forms.CharField(label='選択肢4', required=False)
-    choice_item3_5 = forms.CharField(label='選択肢5', required=False)
-    choice_item4_1 = forms.CharField(label='選択肢1', required=False)
-    choice_item4_2 = forms.CharField(label='選択肢2', required=False)
-    choice_item4_3 = forms.CharField(label='選択肢3', required=False)
-    choice_item4_4 = forms.CharField(label='選択肢4', required=False)
-    choice_item4_5 = forms.CharField(label='選択肢5', required=False)
-    choice_item5_1 = forms.CharField(label='選択肢1', required=False)
-    choice_item5_2 = forms.CharField(label='選択肢2', required=False)
-    choice_item5_3 = forms.CharField(label='選択肢3', required=False)
-    choice_item5_4 = forms.CharField(label='選択肢4', required=False)
-    choice_item5_5 = forms.CharField(label='選択肢5', required=False)
+    content1 = forms.CharField(label='質問内容1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=True)
+    content2 = forms.CharField(label='質問内容2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    content3 = forms.CharField(label='質問内容3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    content4 = forms.CharField(label='質問内容4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    content5 = forms.CharField(label='質問内容5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item1_1 = forms.CharField(label='選択肢1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item1_2 = forms.CharField(label='選択肢2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item1_3 = forms.CharField(label='選択肢3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item1_4 = forms.CharField(label='選択肢4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item1_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item2_1 = forms.CharField(label='選択肢1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item2_2 = forms.CharField(label='選択肢2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item2_3 = forms.CharField(label='選択肢3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item2_4 = forms.CharField(label='選択肢4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item2_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item3_1 = forms.CharField(label='選択肢1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item3_2 = forms.CharField(label='選択肢2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item3_3 = forms.CharField(label='選択肢3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item3_4 = forms.CharField(label='選択肢4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item3_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item4_1 = forms.CharField(label='選択肢1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item4_2 = forms.CharField(label='選択肢2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item4_3 = forms.CharField(label='選択肢3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item4_4 = forms.CharField(label='選択肢4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item4_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item5_1 = forms.CharField(label='選択肢1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item5_2 = forms.CharField(label='選択肢2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item5_3 = forms.CharField(label='選択肢3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item5_4 = forms.CharField(label='選択肢4', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
+    choice_item5_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
 
 
 ANSWER_CHOICE = {
-    ('correct', 'あてはまる'),
-    ('neutral', 'どちらとも言えない'),
-    ('incorrect', 'あてはまらない')
+    ('very applicable', 'とてもあてはまる'),
+    ('applicable', 'あてはまる'),
+    ('somewhat applicable', 'ややあてはまる'),
+    ('neutrality', 'どちらとも言えない'),
+    ('somewhat not applicable', 'ややあてはまらない'),
+    ('not applicable', 'あてはまらない'),
+    ('not applicable at all', '全くあてはまらない')
 }
 
 
