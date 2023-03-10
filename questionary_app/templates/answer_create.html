@@ -47,31 +47,31 @@
                     {% elif question_detail.answer_type == 'selectType' %}
                         {% if forloop.counter == 1 %}
                             {% for radiobutton in form.select_type1 %}
-                                {{ radiobutton }}
+                                <div>{{ radiobutton }}</div>
                             {% endfor %}
                         {% elif forloop.counter == 2 %}
                             {% for radiobutton in form.select_type2 %}
-                                {{ radiobutton }}
+                                <div>{{ radiobutton }}</div>
                             {% endfor %}
                         {% elif forloop.counter == 3 %}
                             {% for radiobutton in form.select_type3 %}
-                                {{ radiobutton }}
+                                <div>{{ radiobutton }}</div>
                             {% endfor %}
                         {% elif forloop.counter == 4 %}
                             {% for radiobutton in form.select_type4 %}
-                                {{ radiobutton }}
+                                <div>{{ radiobutton }}</div>
                             {% endfor %}
                         {% elif forloop.counter == 5 %}
                             {% for radiobutton in form.select_type5 %}
-                                {{ radiobutton }}
+                                <div>{{ radiobutton }}</div>
                             {% endfor %}
                         {% endif %}
                     {% elif question_detail.answer_type == 'customSelectType' %}
                         {% for choice_item in question_detail.detail_choice.all %}
                             {% if forloop.counter == 1 %}
-                                <input type="radio" name="choice_item{{ question_detail.id }}" value="{{ choice_item }}" checked>{{ choice_item }}
+                                <div><input type="radio" name="choice_item{{ question_detail.id }}" value="{{ choice_item }}" checked>{{ choice_item }}</div>
                             {% else %}
-                                <input type="radio" name="choice_item{{ question_detail.id }}" value="{{ choice_item }}">{{ choice_item }}
+                                <div><input type="radio" name="choice_item{{ question_detail.id }}" value="{{ choice_item }}">{{ choice_item }}</div>
                             {% endif %}
                        {% endfor %}
                     {% endif %}

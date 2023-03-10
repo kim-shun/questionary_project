@@ -14,8 +14,8 @@ class GenreCreateForm(forms.ModelForm):
 
 
 class QuestionCreateForm(forms.Form):
-    title = forms.CharField(label='質問のタイトル', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1', 'placeholder': '例：東京都の住みやすさ'}), required=True)
-    genre = forms.ModelChoiceField(label="質問のジャンル", queryset=MGenre.objects.all(), required=True)
+    title = forms.CharField(label='アンケートのタイトル', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1', 'placeholder': '例：東京都の住みやすさ'}), required=True)
+    genre = forms.ModelChoiceField(label="アンケートのジャンル", queryset=MGenre.objects.all(), required=True)
     content1 = forms.CharField(label='質問内容1', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=True)
     content2 = forms.CharField(label='質問内容2', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
     content3 = forms.CharField(label='質問内容3', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
@@ -48,7 +48,7 @@ class QuestionCreateForm(forms.Form):
     choice_item5_5 = forms.CharField(label='選択肢5', widget=forms.Textarea(attrs={'cols': '80', 'rows': '1'}), required=False)
 
 
-ANSWER_CHOICE = {
+ANSWER_CHOICE = (
     ('very applicable', 'とてもあてはまる'),
     ('applicable', 'あてはまる'),
     ('somewhat applicable', 'ややあてはまる'),
@@ -56,38 +56,38 @@ ANSWER_CHOICE = {
     ('somewhat not applicable', 'ややあてはまらない'),
     ('not applicable', 'あてはまらない'),
     ('not applicable at all', '全くあてはまらない')
-}
+)
 
 
 class AnswerCreateForm(forms.Form):
     select_type1 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial=0,
+        initial='applicable',
         required=False
     )
     select_type2 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial=0,
+        initial='applicable',
         required=False
     )
     select_type3 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial=0,
+        initial='applicable',
         required=False
     )
     select_type4 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial=0,
+        initial='applicable',
         required=False
     )
     select_type5 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial=0,
+        initial='applicable',
         required=False
     )
     score1 = forms.IntegerField(label='点数', initial="80",

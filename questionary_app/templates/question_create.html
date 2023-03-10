@@ -115,6 +115,14 @@
 {% block contents %}
 <div class="container my-div-style">
     <div class="row">
+        <div class="mx-auto" style="width: 600px;">
+            <strong>アンケートを作成してください。</strong>
+            <br>
+            <strong>質問は5つまで考案できます。</strong>
+        </div>
+        <div>
+        </div>
+        <br>
         <form method="POST" enctype='multipart/form-data' name="question_create_form">
             {% csrf_token %}
             <div>
@@ -142,17 +150,21 @@
                         <strong>回答の形式</strong>
                     </div>
                     <div class="col-9">
+                        <strong>質問にはどのように回答させますか？</strong>
+                        <div>
+                        </div>
+                        <br>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type1" value="scoreType" onclick="choiceListDisplay1()" checked>
-                            <label class="answer-type-label"> 点数で評価させる(例:満足度は何点ですか？)</label>
+                            <label class="answer-type-label"> 点数(0~100点)で評価させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type1" value="selectType" onclick="choiceListDisplay1()">
-                            <label class="answer-type-label"> 適否を判定させる(あてはまる/あてはまらない)</label>
+                            <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type1" value="customSelectType" onclick="choiceListDisplay1()">
-                            <label class="answer-type-label"> 自分で選択肢を作成する</label>
+                            <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
                     <hr>
@@ -192,17 +204,21 @@
                         <strong>回答の形式</strong>
                     </div>
                     <div class="col-9">
+                        <strong>質問にはどのように回答させますか？</strong>
+                        <div>
+                        </div>
+                        <br>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type2" value="scoreType" onclick="choiceListDisplay2()" checked>
-                            <label class="answer-type-label"> 点数で評価させる(例:満足度は何点ですか？)</label>
+                            <label class="answer-type-label"> 点数(0~100点)で評価させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type2" value="selectType" onclick="choiceListDisplay2()">
-                            <label class="answer-type-label"> 適否を判定させる(あてはまる/あてはまらない)</label>
+                            <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type2" value="customSelectType" onclick="choiceListDisplay2()">
-                            <label class="answer-type-label"> 自分で選択肢を作成する</label>
+                            <label class="answer-type-label">作成した選択肢から選ばせる</label>
                         </div>
                     </div>
                     <hr>
@@ -242,17 +258,21 @@
                         <strong>回答の形式</strong>
                     </div>
                     <div class="col-9">
+                        <strong>質問にはどのように回答させますか？</strong>
+                        <div>
+                        </div>
+                        <br>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type3" value="scoreType" onclick="choiceListDisplay3()" checked>
-                            <label class="answer-type-label"> 点数で評価させる(例:満足度は何点ですか？)</label>
+                            <label class="answer-type-label"> 点数(0~100点)で評価させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type3" value="selectType" onclick="choiceListDisplay3()">
-                            <label class="answer-type-label"> 適否を判定させる(あてはまる/あてはまらない)</label>
+                            <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type3" value="customSelectType" onclick="choiceListDisplay3()">
-                            <label class="answer-type-label"> 自分で選択肢を作成する</label>
+                            <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
                     <hr>
@@ -292,17 +312,21 @@
                         <strong>回答の形式</strong>
                     </div>
                     <div class="col-9">
+                        <strong>質問にはどのように回答させますか？</strong>
+                        <div>
+                        </div>
+                        <br>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type4" value="scoreType" onclick="choiceListDisplay4()" checked>
-                            <label class="answer-type-label"> 点数で評価させる(例:満足度は何点ですか？)</label>
+                            <label class="answer-type-label"> 点数(0~100点)で評価させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type4" value="selectType" onclick="choiceListDisplay4()">
-                            <label class="answer-type-label"> 適否を判定させる(あてはまる/あてはまらない)</label>
+                            <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type4" value="customSelectType" onclick="choiceListDisplay4()">
-                            <label class="answer-type-label"> 自分で選択肢を作成する</label>
+                            <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
                     <hr>
@@ -342,17 +366,21 @@
                         <strong>回答の形式</strong>
                     </div>
                     <div class="col-9">
+                        <strong>質問にはどのように回答させますか？</strong>
+                        <div>
+                        </div>
+                        <br>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type5" value="scoreType" onclick="choiceListDisplay5()" checked>
-                            <label class="answer-type-label"> 点数で評価させる(例:満足度は何点ですか？)</label>
+                            <label class="answer-type-label"> 点数(0~100点)で評価させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type5" value="selectType" onclick="choiceListDisplay5()">
-                            <label class="answer-type-label"> 適否を判定させる(あてはまる/あてはまらない)</label>
+                            <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
                             <input class="answer-type-input" type="radio" name="answer_type5" value="customSelectType" onclick="choiceListDisplay5()">
-                            <label class="answer-type-label"> 自分で選択肢を作成する</label>
+                            <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
                     <hr>
@@ -379,6 +407,24 @@
                         </div>
                     </dev>
                     <hr>
+                </div>
+            </div>
+            <div class="mx-auto" style="width: 600px;">
+                <strong>アンケートには自由コメント欄が自動で追加されます。</strong>
+                <div>
+                </div>
+                <br>
+                <strong>またアンケートには「総合点」を追加できます。追加しますか？</strong>
+                <br>
+                <small> ※「評価」を求めるアンケートではない場合は不要と思われます。</small>
+                <div>
+                </div>
+                <br>
+                <div class="col-3">
+                </div>
+                <div class="col-9">
+                    <input type="radio" name="score_flag" value="yes">はい
+                    <input type="radio" name="score_flag" value="no" checked>いいえ
                 </div>
             </div>
             <button class="btn btn-primary" type="submit"  onclick="radioCheck();">作成</button>
