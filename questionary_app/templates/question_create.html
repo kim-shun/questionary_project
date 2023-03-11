@@ -163,7 +163,7 @@
                             <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
-                            <input class="answer-type-input" type="radio" name="answer_type1" value="customSelectType" onclick="choiceListDisplay1()">
+                            <input class="answer-type-input" type="radio" name="answer_type1" value="originalSelectType" onclick="choiceListDisplay1()">
                             <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                             <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
-                            <input class="answer-type-input" type="radio" name="answer_type2" value="customSelectType" onclick="choiceListDisplay2()">
+                            <input class="answer-type-input" type="radio" name="answer_type2" value="originalSelectType" onclick="choiceListDisplay2()">
                             <label class="answer-type-label">作成した選択肢から選ばせる</label>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                             <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
-                            <input class="answer-type-input" type="radio" name="answer_type3" value="customSelectType" onclick="choiceListDisplay3()">
+                            <input class="answer-type-input" type="radio" name="answer_type3" value="originalSelectType" onclick="choiceListDisplay3()">
                             <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
@@ -325,7 +325,7 @@
                             <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
-                            <input class="answer-type-input" type="radio" name="answer_type4" value="customSelectType" onclick="choiceListDisplay4()">
+                            <input class="answer-type-input" type="radio" name="answer_type4" value="originalSelectType" onclick="choiceListDisplay4()">
                             <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
@@ -379,7 +379,7 @@
                             <label class="answer-type-label"> あてはまるか、あてはまらないかを選択させる</label>
                         </div>
                         <div class="answer-type">
-                            <input class="answer-type-input" type="radio" name="answer_type5" value="customSelectType" onclick="choiceListDisplay5()">
+                            <input class="answer-type-input" type="radio" name="answer_type5" value="originalSelectType" onclick="choiceListDisplay5()">
                             <label class="answer-type-label"> 作成した選択肢から選ばせる</label>
                         </div>
                     </div>
@@ -409,22 +409,22 @@
                     <hr>
                 </div>
             </div>
-            <div class="mx-auto" style="width: 600px;">
+            <div class="mx-auto" style="width: 700px;">
                 <strong>アンケートには自由コメント欄が自動で追加されます。</strong>
                 <div>
                 </div>
                 <br>
                 <strong>またアンケートには「総合点」を追加できます。追加しますか？</strong>
                 <br>
-                <small> ※「評価」を求めるアンケートではない場合は不要と思われます。</small>
+                <small> ※固有の施設やサービス等に対する「評価」を求めるアンケートではない場合は不要と思われます。</small>
                 <div>
                 </div>
                 <br>
                 <div class="col-3">
                 </div>
                 <div class="col-9">
-                    <input type="radio" name="score_flag" value="yes">はい
-                    <input type="radio" name="score_flag" value="no" checked>いいえ
+                    <input type="radio" name="score_flag" value="on">はい
+                    <input type="radio" name="score_flag" value="off" checked>いいえ
                 </div>
             </div>
             <button class="btn btn-primary" type="submit"  onclick="radioCheck();">作成</button>

@@ -21,7 +21,7 @@ class GenreCreateView(LoginRequiredMixin, generic.CreateView):
     model = MGenre
     template_name = 'genre_create.html'
     form_class = GenreCreateForm
-    success_url = reverse_lazy('questionary_app:index')
+    success_url = reverse_lazy('questionary_app:genre_create')
 
     def form_valid(self, form):
         genre = form.save(commit=False)
@@ -43,11 +43,13 @@ def create_question(request):
         question = Question()
         question.title = form.cleaned_data['title']
         question.genre = form.cleaned_data['genre']
+        question.score_flag = request.POST['score_flag']
         question.user = request.user
 
         question_id = Question.objects.create(
             title=question.title,
             genre=question.genre,
+            score_flag=question.score_flag,
             user=question.user
         )
 
@@ -67,7 +69,7 @@ def create_question(request):
                 question_detail_id = create_question_detail(question_id, question_order, question_detail.answer_type,
                                                             question_detail.content, question_detail.user)
 
-            if question_detail.answer_type == 'customSelectType':
+            if question_detail.answer_type == 'originalSelectType':
                 for j in range(1, 6):
                     choice_item = 'choice_item' + str(i) + '_' + str(j)
                     m_choice.choice_item = form.cleaned_data[choice_item]
@@ -155,30 +157,55 @@ def create_answer(request, question_id):
 
             answer_detail.question_detail = QuestionDetail.objects.get(id=question_detail)
             if (score_content is None or score_content == "") and (len(select_type_content) != 0):
-                # 質問への回答形式が正否判定だった場合
-                answer_detail.content = select_type_content
+                # 質問への回答内容が適否の判定だった場合
+                answer_detail.select_content = select_type_content
+                create_answer_detail_select(question, answer_detail.question_detail, answer_id,
+                                            answer_detail.select_content, answer_detail.user)
             elif (score_content is not None and score_content != "") and (len(select_type_content) == 0):
-                # 質問への回答形式が点数形式だった場合
-                answer_detail.content = score_content
+                # 質問への回答内容が点数だった場合
+                answer_detail.score_content = score_content
+                create_answer_detail_score(question, answer_detail.question_detail, answer_id,
+                                           answer_detail.select_content, answer_detail.user)
             else:
-                # 質問への回答形式がユーザー作成の選択肢だった場合
+                # 質問への回答内容がユーザー作成の選択肢だった場合
                 choice_item = 'choice_item' + str(question_detail)
                 choice_item_content = request.POST[choice_item]
-                answer_detail.content = choice_item_content
+                answer_detail.original_select_content = choice_item_content
+                create_answer_detail_original(question, answer_detail.question_detail, answer_id,
+                                              answer_detail.select_content, answer_detail.user)
 
-            if (answer_detail.content is not None and answer_detail.content != ""):
-                create_answer_detail(question, answer_detail.question_detail, answer_id,
-                                     answer_detail.content, answer_detail.user)
         return redirect('questionary_app:index')
     return render(request, 'answer_create.html', params)
 
 
-def create_answer_detail(question, question_detail_id, answer_id, content, user):
+def create_answer_detail_select(question, question_detail_id, answer_id, content, user):
 
     AnswerDetail.objects.create(
         question=question,
         question_detail=question_detail_id,
         answer=answer_id,
-        content=content,
+        select_content=content,
+        user=user
+    )
+
+
+def create_answer_detail_score(question, question_detail_id, answer_id, content, user):
+
+    AnswerDetail.objects.create(
+        question=question,
+        question_detail=question_detail_id,
+        answer=answer_id,
+        score_content=content,
+        user=user
+    )
+
+
+def create_answer_detail_original(question, question_detail_id, answer_id, content, user):
+
+    AnswerDetail.objects.create(
+        question=question,
+        question_detail=question_detail_id,
+        answer=answer_id,
+        original_select_content=content,
         user=user
     )

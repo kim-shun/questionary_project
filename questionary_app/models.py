@@ -5,8 +5,8 @@ from django.db import models
 class MGenre(models.Model):
     """質問ジャンルマスタモデル"""
 
-    genre_name = models.CharField(verbose_name='質問ジャンル名', max_length=60, null=False, unique=True)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    genre_name = models.CharField(verbose_name='質問ジャンル名', max_length=60, null=False, primary_key=True)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
@@ -22,14 +22,15 @@ class MGenre(models.Model):
 class Question(models.Model):
     """質問テーブルモデル"""
 
-    title = models.CharField(verbose_name='タイトル', max_length=60, null=False, unique=True)
-    genre = models.ForeignKey(MGenre, verbose_name="質問ジャンル",
+    title = models.CharField(verbose_name='アンケートのタイトル', max_length=60, null=False, primary_key=True)
+    genre = models.ForeignKey(MGenre, verbose_name="アンケートのジャンル",
                               related_name='question_genre', on_delete=models.PROTECT, null=False)
+    score_flag = models.CharField(verbose_name='総合点付与フラグ', max_length=4, null=False, default="off")
     answer_num = models.PositiveIntegerField(verbose_name="回答人数", null=False, default=0)
     answer_count = models.PositiveIntegerField(verbose_name="回答件数", null=False, default=0)
     median_score = models.PositiveIntegerField(verbose_name="総合点中央値", null=False, default=0)
     average_score = models.PositiveIntegerField(verbose_name="総合点平均値", null=False, default=0)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
@@ -47,7 +48,7 @@ class QuestionDetail(models.Model):
     question_order = models.PositiveIntegerField(verbose_name="質問順序", null=False, default=1)
     answer_type = models.CharField(verbose_name='回答形式', max_length=20, null=False)
     content = models.TextField(verbose_name='質問内容', null=False)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
@@ -70,9 +71,9 @@ class Answer(models.Model):
 
     question = models.ForeignKey(Question, verbose_name='質問ID',
                                  related_name='question_answer', on_delete=models.PROTECT, null=False)
-    all_score = models.PositiveIntegerField(verbose_name="総合点", null=False, default=0)
+    all_score = models.PositiveIntegerField(verbose_name="総合点", null=True)
     comment = models.TextField(verbose_name='自由コメンt', null=True)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
@@ -90,8 +91,10 @@ class AnswerDetail(models.Model):
                                         related_name='question_detail_answer_detail', on_delete=models.PROTECT, null=False)
     answer = models.ForeignKey(Answer, verbose_name='回答ID',
                                related_name='answer_detail', on_delete=models.PROTECT, null=False)
-    content = models.CharField(verbose_name='回答内容', max_length=200, null=False)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    score_content = models.CharField(verbose_name='点数', max_length=200, null=True)
+    select_content = models.CharField(verbose_name='選択内容', max_length=200, null=True)
+    original_select_content = models.CharField(verbose_name='自作選択内容', max_length=200, null=True)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
@@ -109,7 +112,7 @@ class MChoice(models.Model):
     question_detail = models.ForeignKey(QuestionDetail, verbose_name="質問詳細ID", 
                                         related_name='detail_choice', on_delete=models.PROTECT, null=False)
     choice_item = models.CharField(verbose_name='選択項目', max_length=200, null=False)
-    delete_flag = models.PositiveIntegerField(verbose_name="削除フラグ", null=False, default=0)
+    delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
     user = models.ForeignKey(CustomUser, verbose_name='ユーザー', on_delete=models.PROTECT)
