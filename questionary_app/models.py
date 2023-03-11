@@ -5,7 +5,7 @@ from django.db import models
 class MGenre(models.Model):
     """質問ジャンルマスタモデル"""
 
-    genre_name = models.CharField(verbose_name='質問ジャンル名', max_length=60, null=False, primary_key=True)
+    genre_name = models.CharField(verbose_name='質問ジャンル名', max_length=60, null=False, unique=True)
     delete_flag = models.CharField(verbose_name="削除フラグ", max_length=4, null=False, default="off")
     created_at = models.DateTimeField(verbose_name='作成日時', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
@@ -22,7 +22,7 @@ class MGenre(models.Model):
 class Question(models.Model):
     """質問テーブルモデル"""
 
-    title = models.CharField(verbose_name='アンケートのタイトル', max_length=60, null=False, primary_key=True)
+    title = models.CharField(verbose_name='アンケートのタイトル', max_length=60, null=False, unique=True)
     genre = models.ForeignKey(MGenre, verbose_name="アンケートのジャンル",
                               related_name='question_genre', on_delete=models.PROTECT, null=False)
     score_flag = models.CharField(verbose_name='総合点付与フラグ', max_length=4, null=False, default="off")
