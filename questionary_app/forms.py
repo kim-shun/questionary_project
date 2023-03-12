@@ -197,5 +197,5 @@ class AnswerCreateForm(forms.Form):
                                 required=False)
     all_score = forms.IntegerField(label='総合点', initial="80",
                                    widget=forms.NumberInput(attrs={'min': 0, 'max': 100}),
-                                   required=True)
+                                   required=False)
     comment = forms.CharField(label='自由コメント', widget=forms.Textarea, required=False)

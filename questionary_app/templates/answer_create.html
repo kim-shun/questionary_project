@@ -79,6 +79,7 @@
             </div>
             <hr>
             {% endfor %}
+            {% if question.score_flag == 'on' %}
             <div class="row">
                 <div class="col-3">
                     <strong>{{ form.all_score.label_tag }}</strong>
@@ -86,6 +87,7 @@
                 <div class="col-9">{{ form.all_score }}点</div>
             </div>
             <hr>
+            {% endif %}
             <div class="row">
                 <div class="col-3">
                     <strong>{{ form.comment.label_tag }}</strong>
