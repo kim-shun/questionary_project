@@ -128,7 +128,7 @@ def create_answer(request, question_id):
 
         question.answer_num = answer_num
         question.answer_count = answer_count
-        
+
         if question.score_flag == "on":
             average_score = Answer.objects.filter(question_id=question).aggregate(Avg('all_score'))["all_score__avg"]
             score_list = Answer.objects.filter(question_id=question).order_by("all_score").values_list("all_score", flat=True)
@@ -174,14 +174,14 @@ def create_answer(request, question_id):
                 # 質問への回答内容が点数だった場合
                 answer_detail.score_content = score_content
                 create_answer_detail_score(question, answer_detail.question_detail, answer_id,
-                                           answer_detail.select_content, answer_detail.user)
+                                           answer_detail.score_content, answer_detail.user)
             else:
                 # 質問への回答内容がユーザー作成の選択肢だった場合
                 choice_item = 'choice_item' + str(question_detail)
                 choice_item_content = request.POST[choice_item]
                 answer_detail.original_select_content = choice_item_content
                 create_answer_detail_original(question, answer_detail.question_detail, answer_id,
-                                              answer_detail.select_content, answer_detail.user)
+                                              answer_detail.original_select_content, answer_detail.user)
 
         return redirect('questionary_app:index')
     return render(request, 'answer_create.html', params)

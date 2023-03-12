@@ -139,13 +139,13 @@ class QuestionCreateForm(forms.Form):
 
 
 ANSWER_CHOICE = (
-    ('very applicable', 'とてもあてはまる'),
-    ('applicable', 'あてはまる'),
-    ('somewhat applicable', 'ややあてはまる'),
-    ('neutrality', 'どちらとも言えない'),
-    ('somewhat not applicable', 'ややあてはまらない'),
-    ('not applicable', 'あてはまらない'),
-    ('not applicable at all', '全くあてはまらない')
+    ('とてもあてはまる', 'とてもあてはまる'),
+    ('あてはまる', 'あてはまる'),
+    ('ややあてはまる', 'ややあてはまる'),
+    ('どちらとも言えない', 'どちらとも言えない'),
+    ('ややあてはまらない', 'ややあてはまらない'),
+    ('あてはまらない', 'あてはまらない'),
+    ('全くあてはまらない', '全くあてはまらない')
 )
 
 
@@ -153,31 +153,31 @@ class AnswerCreateForm(forms.Form):
     select_type1 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial='applicable',
+        initial='あてはまる',
         required=False
     )
     select_type2 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial='applicable',
+        initial='あてはまる',
         required=False
     )
     select_type3 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial='applicable',
+        initial='あてはまる',
         required=False
     )
     select_type4 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial='applicable',
+        initial='あてはまる',
         required=False
     )
     select_type5 = forms.ChoiceField(
         choices=ANSWER_CHOICE,
         widget=forms.RadioSelect,
-        initial='applicable',
+        initial='あてはまる',
         required=False
     )
     score1 = forms.IntegerField(label='点数', initial="80",
