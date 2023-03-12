@@ -83,7 +83,7 @@
 | ------                 | ------     | -----------                    |
 | id                     | integer    | null: false, primary_key: true |
 | genre_name             | string     | null: false, unique: true      |
-| delete_flag            | integer    | null: false                    |
+| delete_flag            | string     | null: false                    |
 | created_at             | date       |                                |
 | updated_at             | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -100,11 +100,12 @@
 | id                     | integer    | null: false, primary_key: true |
 | title                  | string     | null: false, unique: true      |
 | genre                  | references | foreign_key: true, null: false |
+| score_flag             | string     | null: false                    |
 | answer_num             | integer    | null: false                    |
 | answer_count           | integer    | null: false                    |
-| median_score           | integer    | null: false                    |
-| average_score          | integer    | null: false                    |
-| delete_flag            | integer    | null: false                    |
+| median_score           | float      | null: false                    |
+| average_score          | float      | null: false                    |
+| delete_flag            | string     | null: false                    |
 | created_at             | date       |                                |
 | updated_at             | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -126,7 +127,7 @@
 | question_order         | integer    | null: false                    |
 | answer_type            | string     | null: false                    |
 | content                | text       | null: false                    |
-| delete_flag            | integer    | null: false                    |
+| delete_flag            | string     | null: false                    |
 | created_at             | date       |                                |
 | updated_at             | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -145,7 +146,7 @@
 | question               | references | foreign_key: true, null: false |
 | question_detail        | references | foreign_key: true, null: false |
 | choice_item            | string     | null: false                    |
-| delete_flag            | integer    | null: false                    |
+| delete_flag            | string     | null: false                    |
 | created_at             | date       |                                |
 | updated_at             | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -163,9 +164,9 @@
 | ------                 | ------     | -----------                    |
 | id                     | integer    | null: false, primary_key: true |
 | question               | references | foreign_key: true, null: false |
-| all_score              | integer    | null: false                    |
+| all_score              | integer    | null: true                     |
 | comment                | text       | null: true                     |
-| delete_flag            | integer    | null: false                    |
+| delete_flag            | string     | null: false                    |
 | created_at             | date       |                                |
 | updated_at             | date       |                                |
 | user                   | references | foreign_key: true              |
@@ -177,17 +178,19 @@
 - has_many   :answer_detail
 
 ## answer_detail テーブル
-| Column                 | Type       | Options                        |
-| ------                 | ------     | -----------                    |
-| id                     | integer    | null: false, primary_key: true |
-| question               | references | foreign_key: true, null: false |
-| question_detail        | references | foreign_key: true, null: false |
-| answer                 | references | foreign_key: true, null: false |
-| content                | string     | null: false                    |
-| delete_flag            | integer    | null: false                    |
-| created_at             | date       |                                |
-| updated_at             | date       |                                |
-| user                   | references | foreign_key: true              |
+| Column                  | Type       | Options                        |
+| ------                  | ------     | -----------                    |
+| id                      | integer    | null: false, primary_key: true |
+| question                | references | foreign_key: true, null: false |
+| question_detail         | references | foreign_key: true, null: false |
+| answer                  | references | foreign_key: true, null: false |
+| score_content           | string     | null: true                     |
+| select_content          | string     | null: true                     |
+| original_select_content | string     | null: true                     |
+| delete_flag             | string     | null: false                    |
+| created_at              | date       |                                |
+| updated_at              | date       |                                |
+| user                    | references | foreign_key: true              |
 
 
 ### Association
