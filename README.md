@@ -52,7 +52,7 @@
 # テーブル設計
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/d3e4834f13400ebe18bc777d7923a644.png)](https://gyazo.com/d3e4834f13400ebe18bc777d7923a644)
+[![Image from Gyazo](https://i.gyazo.com/f144f12d53638398f64b4d74ca216dea.png)](https://gyazo.com/f144f12d53638398f64b4d74ca216dea)
 
 ## customuser テーブル
 | Column                 | Type       | Options                        |
