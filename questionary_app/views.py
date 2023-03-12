@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from .forms import GenreCreateForm, QuestionCreateForm, AnswerCreateForm
 from .models import MGenre, Question, QuestionDetail, Answer, AnswerDetail, MChoice
 from django.db.models import Avg
+import math
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
@@ -133,19 +134,16 @@ def create_answer(request, question_id):
             average_score = Answer.objects.filter(question_id=question).aggregate(Avg('all_score'))["all_score__avg"]
             score_list = Answer.objects.filter(question_id=question).order_by("all_score").values_list("all_score", flat=True)
             median_score = 0
-            if answer_count % 2 == 0:
-                point = int(answer_count / 2)
-                # TODO 確認して修正
-                print(point)
-                print(score_list)
-                median_score = score_list[point]
+            if answer_count == 1:
+                median_score = answer_id.all_score
+            elif answer_count % 2 == 0:
+                point1 = int(answer_count / 2)
+                point2 = point1 - 1
+                median_score = (score_list[point1] + score_list[point2]) / 2
             elif answer_count % 2 != 0:
-                point = round(answer_count / 2)
-                # TODO 確認して修正
-                print(point)
-                print(score_list)
+                point = math.floor(answer_count / 2)
                 median_score = score_list[point]
-            question.average_score = average_score
+            question.average_score = round(average_score, 1)
             question.median_score = median_score
         question.save()
 
