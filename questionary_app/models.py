@@ -1,6 +1,8 @@
 from accounts.models import CustomUser
 from django.db import models
 
+# TODO READMEとER図修正
+
 
 class MGenre(models.Model):
     """質問ジャンルマスタモデル"""
