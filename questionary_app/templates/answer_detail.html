@@ -1,2 +1,15 @@
 <h1>回答の詳細</h1>
-<h2>円グラフや棒グラフで回答結果表示</h2>
+<h2>{{ question.title }}</h2>
+<h2>{{ question.genre }}</h2>
+{% for question_detail in question.question_detail.all %}
+<div>{{ question_detail.content }}</div>
+  {% for answer in question_detail.question_detail_answer_detail.all %}
+    {% if question_detail.answer_type == 'scoreType' %}
+      <div>{{ answer.score_content }}</div>
+    {% elif question_detail.answer_type == 'selectType' %}
+      <div>{{ answer.select_content }}</div>
+    {% elif question_detail.answer_type == 'originalSelectType' %}
+      <div>{{ answer.original_select_content }}</div>
+    {% endif %}
+  {% endfor %}
+{% endfor %}
