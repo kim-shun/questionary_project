@@ -215,3 +215,8 @@ def create_answer_detail_original(question, question_detail_id, answer_id, conte
         original_select_content=content,
         user=user
     )
+
+
+def answer_detail(request, question_id):
+    question = Question.objects.get(id=question_id)
+    return render(request, 'answer_detail.html', {'question': question})

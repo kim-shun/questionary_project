@@ -30,7 +30,7 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
           {% for question in question_list %}
           <div class="post-preview">
-              <a href="#">
+              <a href="{% url 'questionary_app:answer_detail' question.pk %}">
                   <h2 class="post-title">
                       {{ question.title }}
                   </h2>
