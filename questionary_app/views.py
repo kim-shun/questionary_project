@@ -151,7 +151,6 @@ def create_answer(request, question_id):
         answer_detail.user = request.user
         question_detail_count = QuestionDetail.objects.filter(question_id=question).count()
 
-        # TODO answer_detailの登録内容確認して修正
         for i in range(1, question_detail_count + 1):
             question_detail_id = 'question_detail_id' + str(i)
             question_detail = request.POST[question_detail_id]

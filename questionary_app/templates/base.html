@@ -42,11 +42,6 @@
                     <li class="nav-item">
                         <a class="nav-link {% block active_question_create %}{% endblock %}" href="{% url 'questionary_app:question_create' %}">CREATE QUESTION</a>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Question LIST</a> 
-                    </li>
-                    {% endif %}
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
@@ -85,7 +80,7 @@
     {% block contents%}{% endblock %}
 
     <!-- Footer -->
-    <footer class="py-5 bg-black">
+    <footer class="py-5 bg-sky">
         <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Unique Questionary 2023</p>
         </div>
     </footer>
