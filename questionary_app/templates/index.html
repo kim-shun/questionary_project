@@ -35,6 +35,7 @@
                       {{ question.title }}
                   </h2>
               </a>
+              <p class="post-meta">ジャンル：{{ question.genre }}</p>
               <p class="post-meta">回答人数：{{ question.answer_num }}人</p>
               <p class="post-meta">回答件数：{{ question.answer_count }}人</p>
               {% if question.score_flag == "on" %}
@@ -46,7 +47,6 @@
                   <p class="post-meta">総合点平均値：{{ question.average_score }}点</p>
                 {% endif %}
               {% endif %}
-              <p class="post-meta">作成者：{{ question.user }}</p>
               <p class="post-meta">作成日時：{{ question.created_at }}</p>
               <div class="d-flex justify-content-end mb-4">
                <a class="btn btn-primary float-right" href="{% url 'questionary_app:answer_create' question.pk %}">回答する</a>
